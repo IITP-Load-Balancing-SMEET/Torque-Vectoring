@@ -1,2 +1,2 @@
-# IITP-Load-Balancing-SMEET2
+# Torque Vectoring
 2024
