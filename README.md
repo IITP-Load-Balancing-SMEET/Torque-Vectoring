@@ -39,8 +39,12 @@ $$\
 z = \begin{bmatrix}
 V_x \\
 V_y \\
+\gamma \\
 a_x \\
 a_y \\
-\gamma \\
+F_{xfl} \\
+F_{xfr} \\
+F_{xrl} \\
+F_{xrr} \\
 \end{bmatrix}
 \$$
