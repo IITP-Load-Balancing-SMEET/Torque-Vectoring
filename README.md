@@ -46,17 +46,12 @@ a_y \\
 \$$
 
 
-$$\
+$$
 f(x) = \begin{bmatrix}
-\frac{1}{m}{\frac{1}{R}(u_2 + u_3)cos(u_1)-(x_4+x_5)sin(u_1)+\frac{1}{R}(u_4+u_5)-C_{av}x_1^2}+x_2x_3 \\
-\frac{1}{m}{\frac{1}{R}(u_2 + u_3)sin(u_1)+(x_4+x_5)cos(u_1)+(x_6+x_7)}+x_1x_3 \\
-\frac{1}{m}[l_f{\frac{1}{R}(u_2 + u_3)sin(u_1)+(x_4+x_5)cos(u_1)}+ t{\frac{1}{R}(u2-u3)cos(u_1) + (-x_4+x_5)cos(u_1)+\frac{1}{R}(u4-u5)} -l_r(x_6+x_7)] \\
-\frac{x_1}{\sigma}- (x_4+\overline{F}_{yfl}) \\
-
-\frac{x_1}{\sigma}- (x_5+\overline{F}_{yfr}) \\ 
-
-\frac{x_1}{\sigma}- (x_6+\overline{F}_{yrl}) \\ 
-
-\frac{x_1}{\sigma}- (x_7+\overline{F}_{yrr}) \\ 
+\frac{1}{m} \left( \frac{1}{R}(u_2 + u_3) \cos(u_1) - (x_4 + x_5) \sin(u_1) + \frac{1}{R}(u_4 + u_5) - C_{av} x_1^2 \right) + x_2 x_3 \\
+\frac{1}{m} \left( \frac{1}{R}(u_2 + u_3) \sin(u_1) + (x_4 + x_5) \cos(u_1) + (x_6 + x_7) \right) + x_1 x_3 \\
+\frac{1}{m} \left( l_f \left( \frac{1}{R}(u_2 + u_3) \sin(u_1) + (x_4 + x_5) \cos(u_1) \right) + t \left( \frac{1}{R}(u_2 - u_3) \cos(u_1) + (-x_4 + x_5) \cos(u_1) + \frac{1}{R}(u_4 - u_5) \right) - l_r (x_6 + x_7) \right) \\
+\frac{x_1}{\sigma} \left( -x_4 + \overline{F}_{yfl} \right) \\
 \end{bmatrix}
-\$$
+$$
+
