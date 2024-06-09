@@ -34,3 +34,13 @@ u = \begin{bmatrix}
 T_{di}-T{bi}\\
 \end{bmatrix}
 \$$
+
+$$\
+z = \begin{bmatrix}
+V_x \\
+V_y \\
+a_x \\
+a_y \\
+\gamma \\
+\end{bmatrix}
+\$$
