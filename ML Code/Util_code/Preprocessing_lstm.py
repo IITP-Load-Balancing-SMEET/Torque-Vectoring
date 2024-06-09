@@ -65,8 +65,8 @@ def preprocessing(input_path,output_path):
 
 
 if __name__ == "__main__":
-    path = 'C:/Users/User/Desktop/Code/Torque_vectoring_for_IJAT/CarMaker File/FCM_Projects_JM/FS_race/SimOutput/DESKTOP-00IBLK8/20240528'
-    output_path = 'Data/' + "Test"
+    path = 'C:/Users/User/Desktop/Code/Torque_vectoring_IITP/CarMaker File/FCM_Projects_JM/FS_race/SimOutput/DESKTOP-00IBLK8/20240530'
+    output_path = '../Data/' + "Test"
     
 
     #path = "Data/CM_data"

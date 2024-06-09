@@ -8,12 +8,12 @@ import numpy as np
 
 if __name__ == "__main__":
     try:
-        batch_size = 8
+        batch_size = 32
         seq_len = 500
         hidden_sizes = [100]
-        epochs = 200
+        epochs = 250
         input_size = 15
-        num_layers = 3
+        num_layers = 4
         pretrained = False
 
         x_min_value = np.array([-0.6, 0, 0, 0, 0, 0, 0, 0, 0, -30, -30,-20,-1, -2, 0])
