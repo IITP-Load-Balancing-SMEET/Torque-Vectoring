@@ -31,7 +31,7 @@ F_{yrr} \\
 $$\
 u = \begin{bmatrix}
 \frac{\delta_1 + \delta_2}{2} \\
-T_{di}-T{bi}\\
+T_{di}-T_{bi}\\
 \end{bmatrix}
 \$$
 
