@@ -42,9 +42,5 @@ V_y \\
 \gamma \\
 a_x \\
 a_y \\
-F_{xfl} \\
-F_{xfr} \\
-F_{xrl} \\
-F_{xrr} \\
 \end{bmatrix}
 \$$
