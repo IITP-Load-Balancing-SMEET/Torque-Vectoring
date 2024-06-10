@@ -1,4 +1,4 @@
-# Torque_Vectoring (IJAT)
+# Torque Vectoring (IJAT)
 
 <div align='center'>
  
