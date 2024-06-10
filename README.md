@@ -35,10 +35,6 @@ T_{fl} = T_{dfl}-T_{bfl}\\
 T_{fr} = T_{dfr}-T_{bfr}\\
 T_{rl} = T_{drl}-T_{brl}\\
 T_{rl} = T_{drl}-T_{brl}\\
-F_{xfl}\\
-F_{xfr}\\
-F_{xrl}\\
-F_{xrr}\\
 \end{bmatrix}\in{R^{9}}
 $$
 
