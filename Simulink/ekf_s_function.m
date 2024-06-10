@@ -2,8 +2,7 @@ function [sys, x0, str, ts] = ekf_s_function(t, x, u, flag)
     switch flag
         case 0
             [sys, x0, str, ts] = mdlInitializeSizes;
-        case 1
-            sys = mdlDerivatives(t, x, u);
+
         case 2
             sys = mdlUpdate(t, x, u);
         case 3
@@ -50,18 +49,16 @@ function sys = mdlUpdate(t, x, u)
     C_av = 0.01;  % Aerodynamic coefficient
     l_f = 1.2;  % Distance from CG to front axle
     l_r = 1.6;  % Distance from CG to rear axle
-    t = 1.5;  % Track width
-    sigma = 1;  % Some parameter related to tire force
+    track = 1.5;  % Track width
+    sigma = 1;  % relaxation Length to tire force
     F_yfl_max = 3000;  % Maximum lateral tire force
     Q = diag([1, 1, 0.0001, 1000, 1000, 1000, 1000]); % Process Noise Covariance Matrix
     R = diag([0.0001, 0.001, 0.0001, 0.0001, 0.000001]); % Measurement Noise Covariance Matrix 
     
-    % matrix
     % Jacobian
-
     F = [-(2*C_av*x_est(1))/m, x_est(3), x_est(2), -sin(delta)/m, -sin(delta)/m, 0, 0;
         x_est(3), 0, x_est(1), cos(delta)/m, cos(delta)/m, 1/m, 1/m;
-        0, 0, 0, (l_f*cos(delta) - t*cos(delta))/m, (l_f*cos(delta) + t*cos(delta))/m, -l_r/m, -l_r/m;
+        0, 0, 0, (l_f*cos(delta) - track*cos(delta))/m, (l_f*cos(delta) + track*cos(delta))/m, -l_r/m, -l_r/m;
         (F_yfl_max - x_est(4))/sigma, 0, 0, -x_est(1)/sigma, 0, 0, 0;
         (F_yfl_max - x_est(5))/sigma, 0, 0, 0, -x_est(1)/sigma, 0, 0;
         (F_yfl_max - x_est(6))/sigma, 0, 0, 0, 0, -x_est(1)/sigma, 0;
@@ -76,8 +73,13 @@ function sys = mdlUpdate(t, x, u)
         0, 0, 0, cos(delta)/m, cos(delta)/m, 1/m, 1/m
     ];
     
-    % Prediction step 
-    x_pred = stateTransitionFunction(x_est, delta, Torque, m, Radius, C_av, l_f, l_r, t, sigma, F_yfl_max);
+    % Prediction step
+    if length(t) ==1
+        dt = t(1);
+    else
+        dt = t(2)-t(1);
+    end
+    x_pred = stateTransitionFunction(x_est, delta, Torque, m, Radius, C_av, l_f, l_r, track, dt, sigma, F_yfl_max);
     P_pred = F * P_est * F' + Q;
 
     % Kalman Gain
@@ -96,7 +98,7 @@ function sys = mdlOutputs(t, x, u)
     sys = x(1:7);  % Output the state estimate
 end
 
-function x_pred = stateTransitionFunction(x, delta, Torque, m, R, C_av, l_f, l_r, t, sigma, F_yfl_max)
+function x_pred = stateTransitionFunction(x, delta, Torque, m, R, C_av, l_f, l_r, track, dt, sigma, F_yfl_max)
     % Define the state transition function f(x)
     V_x = x(1);
     V_y = x(2);
@@ -114,11 +116,12 @@ function x_pred = stateTransitionFunction(x, delta, Torque, m, R, C_av, l_f, l_r
 
     x1_dot = 1/m * (1/R * (T_fl + T_fr) * cos(delta) - (F_yfl + F_yfr) * sin(delta) + 1/R * (T_rl + T_rr) - C_av * V_x^2) + V_y * gamma;
     x2_dot = 1/m * (1/R * (T_fl + T_fr) * sin(delta) + (F_yfl + F_yfr) * cos(delta) + (F_yrl + F_yrr)) + V_x * gamma;
-    x3_dot = 1/m * (l_f * (1/R * (T_fl + T_fr) * sin(delta) + (F_yfl + F_yfr) * cos(delta)) + t * (1/R * (T_fl - T_fr) * cos(delta) + (-F_yfl + F_yfr) * cos(delta) + 1/R * (T_rl - T_rr)) - l_r * (F_yrl + F_yrr));
+    x3_dot = 1/m * (l_f * (1/R * (T_fl + T_fr) * sin(delta) + (F_yfl + F_yfr) * cos(delta)) +  track * (1/R * (T_fl - T_fr) * cos(delta) + (-F_yfl + F_yfr) * cos(delta) + 1/R * (T_rl - T_rr)) - l_r * (F_yrl + F_yrr));
     x4_dot = V_x / sigma * (-F_yfl + F_yfl_max);
     x5_dot = V_x / sigma * (-F_yfr + F_yfl_max);  
     x6_dot = V_x / sigma * (-F_yrl + F_yfl_max);  
     x7_dot = V_x / sigma * (-F_yrr + F_yfl_max); %  have to check what kind of values to insert  
+    
 
-    x_pred = x + [x1_dot; x2_dot; x3_dot; x4_dot; x5_dot; x6_dot; x7_dot] * (t(2)-t(1));  
+    x_pred = x + [x1_dot; x2_dot; x3_dot; x4_dot; x5_dot; x6_dot; x7_dot] * dt;  
 end
