@@ -35,10 +35,6 @@ T_{fl} = T_{dfl}-T_{bfl}\\
 T_{fr} = T_{dfr}-T_{bfr}\\
 T_{rl} = T_{drl}-T_{brl}\\
 T_{rl} = T_{drl}-T_{brl}\\
-F_{xfl}\\
-F_{xfr}\\
-F_{xrl}\\
-F_{xrr}\\
 \end{bmatrix}\in{R^{9}}
 $$
 
@@ -71,7 +67,7 @@ h(X) = \begin{bmatrix}
 x_1 \; (=V_x) \\
 x_2 \; (=V_y) \\
 x_3 \; (=\gamma) \\
-\frac{1}{m}[(u_6+u_7)cos(u_1) - (x_4+x_5)sin(u_1)+u_8+u_9-C_{av}x_1^2] \\
-\frac{1}{m}[(u_6+u_7)sin(u_1) + (x_4+x_5)cos(u_1)+x_6+x_7]
+\frac{1}{m}[(u_2+u_3)cos(u_1)/R - (x_4+x_5)sin(u_1)+(u_4+u_5)/R-C_{av}x_1^2] \\
+\frac{1}{m}[(u_2+u_3)sin(u_1)/R + (x_4+x_5)cos(u_1)+x_6+x_7]
 \end{bmatrix}
 $$
