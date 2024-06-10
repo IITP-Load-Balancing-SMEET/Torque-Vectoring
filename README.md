@@ -2,7 +2,7 @@
 
 <div align='center'>
  
-![image](https://github.com/IITP-Load-Balancing-SMEET/Torque-Vectoring/assets/86957779/0f096613-bd13-4665-ae52-25d9d809b83e)
+![image](https://github.com/IITP-Load-Balancing-SMEET/Torque-Vectoring/assets/86957779/dc042e82-fc9f-4b85-af4a-72224ab99e6f)
 
 </div>
 
