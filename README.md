@@ -21,22 +21,25 @@ X = \begin{bmatrix}
 V_x \\
 V_y \\
 \gamma \\
-F_{xfl} \\
-F_{xfr} \\
-F_{xrl} \\
-F_{xrr} \\
 F_{yfl} \\
 F_{yfr} \\
 F_{yrl} \\
 F_{yrr} \\
-\end{bmatrix}
+\end{bmatrix} \in{R^{7}}
 $$ 
 
 $$
 u = \begin{bmatrix}
 \frac{\delta_1 + \delta_2}{2} \\
-T_{di}-T_{bi}\\
-\end{bmatrix}, where \;i=fl, fr, rl, rr
+T_{fl} = T_{dfl}-T_{bfl}\\
+T_{fr} = T_{dfr}-T_{bfr}\\
+T_{rl} = T_{drl}-T_{brl}\\
+T_{rl} = T_{drl}-T_{brl}\\
+F_{xfl}\\
+F_{xfr}\\
+F_{xrl}\\
+F_{xrr}\\
+\end{bmatrix}\in{R^{9}}
 $$
 
 $$
@@ -46,7 +49,7 @@ V_y \\
 \gamma \\
 a_x \\
 a_y \\
-\end{bmatrix}
+\end{bmatrix}\in{R^{5}}
 $$
 
 ### System model
@@ -65,10 +68,10 @@ $$
 
 $$
 h(X) = \begin{bmatrix}
-x_1 \;(=V_x) \\
-x_2 \;(=V_y) \\
-x_3 \;(=\gamma) \\
-\frac{1}{m}[(x_4+x_5)cos(\frac{\delta_1 + \delta_2}{2}) - (x_8+x_9)sin(\frac{\delta_1 + \delta_2}{2})+x_6+x_7-C_{av}x_1^2] \\
-\frac{1}{m}[(x_4+x_5)sin(\frac{\delta_1 + \delta_2}{2}) + (x_8+x_9)cos(\frac{\delta_1 + \delta_2}{2})+x_{10}+x_{11}]
+x_1 \; (=V_x) \\
+x_2 \; (=V_y) \\
+x_3 \; (=\gamma) \\
+\frac{1}{m}[(u_6+u_7)cos(u_1) - (x_4+x_5)sin(u_1)+u_8+u_9-C_{av}x_1^2] \\
+\frac{1}{m}[(u_6+u_7)sin(u_1) + (x_4+x_5)cos(u_1)+x_6+x_7]
 \end{bmatrix}
 $$
