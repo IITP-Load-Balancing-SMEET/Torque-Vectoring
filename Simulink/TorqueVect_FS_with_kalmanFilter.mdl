@@ -53,11 +53,10 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <cp:category>model</cp:category>
-  <dcterms:created xsi:type="dcterms:W3CDTF">2002-02-08T06:09:51Z</dcterms:created>
-  <dc:creator>fh</dc:creator>
-  <cp:lastModifiedBy>SMEET_SIMUL</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2024-06-11T11:11:57Z</dcterms:modified>
-  <cp:revision>5.206</cp:revision>
+  <dcterms:created xsi:type="dcterms:W3CDTF">2024-06-11T11:45:40Z</dcterms:created>
+  <cp:lastModifiedBy>User</cp:lastModifiedBy>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2024-06-11T11:45:40Z</dcterms:modified>
+  <cp:revision>5.207</cp:revision>
   <cp:version>R2022a</cp:version>
 </cp:coreProperties>
 
@@ -72,18 +71,18 @@ __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <mwcoreProperties xmlns="http://schemas.mathworks.com/package/2014/corePropertiesExtension">
-  <uuid>3f807983-4083-4908-8d7a-c3005d35bd2c</uuid>
+  <uuid>c4efc0dd-983a-42df-aa4f-2da7d907f9b7</uuid>
 </mwcoreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2022a Release -->
 <MathWorks_version_info>
-  <version>9.12.0.2529717</version>
+  <version>9.12.0.2327980</version>
   <release>R2022a</release>
-  <description>Update 8</description>
-  <date>Feb 13 2024</date>
-  <checksum>2701991501</checksum>
+  <description>Update 7</description>
+  <date>Jul 13 2023</date>
+  <checksum>2420396344</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -130,8 +129,8 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="RTWModifiedTimeStamp">640037456</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:5.206&gt;</P>
+      <P Name="RTWModifiedTimeStamp">640038789</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:5.207&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="LibraryLinkDisplay">none</P>
@@ -499,16 +498,16 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
   <Object Version="22.0.0" ClassName="Simulink.ConfigSet">
     <P Name="DisabledProps" Class="double">[]</P>
     <P Name="Description"/>
-    <Array PropName="Components" Type="Handle" Dimension="1*10">
+    <Array PropName="Components" Type="Handle" Dimension="1*9">
       <Object ObjectID="2" Version="22.0.0" ClassName="Simulink.SolverCC">
         <P Name="DisabledProps" Class="double">[]</P>
         <P Name="Description"/>
         <P Name="Components" Class="double">[]</P>
         <P Name="StartTime">0.0</P>
-        <P Name="StopTime">inf</P>
+        <P Name="StopTime">10.0</P>
         <P Name="AbsTol">auto</P>
         <P Name="AutoScaleAbsTol">on</P>
-        <P Name="FixedStep">0.001</P>
+        <P Name="FixedStep">auto</P>
         <P Name="InitialStep">auto</P>
         <P Name="MaxOrder">5</P>
         <P Name="ZcThreshold">auto</P>
@@ -520,17 +519,17 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="MinStep">auto</P>
         <P Name="MaxConsecutiveMinStep">1</P>
         <P Name="RelTol">1e-3</P>
-        <P Name="EnableMultiTasking">on</P>
+        <P Name="EnableMultiTasking">off</P>
         <P Name="AllowMultiTaskInputOutput">off</P>
         <P Name="ConcurrentTasks">off</P>
-        <P Name="SolverName">FixedStepAuto</P>
+        <P Name="SolverName">VariableStepAuto</P>
         <P Name="SolverJacobianMethodControl">auto</P>
         <P Name="DaesscMode">auto</P>
         <P Name="ShapePreserveControl">DisableAll</P>
         <P Name="ZeroCrossControl">UseLocalSettings</P>
         <P Name="ZeroCrossAlgorithm">Nonadaptive</P>
-        <P Name="AlgebraicLoopSolver">TrustRegion</P>
-        <P Name="SolverInfoToggleStatus">on</P>
+        <P Name="AlgebraicLoopSolver">Auto</P>
+        <P Name="SolverInfoToggleStatus">off</P>
         <P Name="IsAutoAppliedInSIP">off</P>
         <P Name="SolverResetMethod">Fast</P>
         <P Name="PositivePriorityOrder">off</P>
@@ -553,14 +552,14 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="ExternalInput">[t, u]</P>
         <P Name="FinalStateName">xFinal</P>
         <P Name="InitialState">xInitial</P>
-        <P Name="LimitDataPoints">on</P>
+        <P Name="LimitDataPoints">off</P>
         <P Name="MaxDataPoints">1000</P>
         <P Name="LoadExternalInput">off</P>
         <P Name="LoadInitialState">off</P>
         <P Name="SaveFinalState">off</P>
         <P Name="SaveOperatingPoint">off</P>
-        <P Name="SaveFormat">Array</P>
-        <P Name="SignalLoggingSaveFormat">ModelDataLogs</P>
+        <P Name="SaveFormat">Dataset</P>
+        <P Name="SignalLoggingSaveFormat">Dataset</P>
         <P Name="SaveOutput">on</P>
         <P Name="SaveState">off</P>
         <P Name="SignalLogging">on</P>
@@ -571,11 +570,11 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="StreamToWorkspace">off</P>
         <P Name="StreamVariableName">streamout</P>
         <P Name="SaveTime">on</P>
-        <P Name="ReturnWorkspaceOutputs">off</P>
+        <P Name="ReturnWorkspaceOutputs">on</P>
         <P Name="StateSaveName">xout</P>
         <P Name="TimeSaveName">tout</P>
         <P Name="OutputSaveName">yout</P>
-        <P Name="SignalLoggingName">sigsOut</P>
+        <P Name="SignalLoggingName">logsout</P>
         <P Name="DSMLoggingName">dsmout</P>
         <P Name="OutputOption">RefineOutputTimes</P>
         <P Name="OutputTimes">[]</P>
@@ -588,19 +587,19 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
       </Object>
       <Object ObjectID="4" Version="22.0.0" ClassName="Simulink.OptimizationCC">
         <Array PropName="DisabledProps" Type="Cell" Dimension="1*9">
-          <Cell Class="char">ZeroExternalMemoryAtStartup</Cell>
-          <Cell Class="char">ZeroInternalMemoryAtStartup</Cell>
-          <Cell Class="char">NoFixptDivByZeroProtection</Cell>
-          <Cell Class="char">OptimizeModelRefInitCode</Cell>
           <Cell Class="char">BooleansAsBitfields</Cell>
           <Cell Class="char">PassReuseOutputArgsAs</Cell>
           <Cell Class="char">PassReuseOutputArgsThreshold</Cell>
+          <Cell Class="char">ZeroExternalMemoryAtStartup</Cell>
+          <Cell Class="char">ZeroInternalMemoryAtStartup</Cell>
+          <Cell Class="char">OptimizeModelRefInitCode</Cell>
+          <Cell Class="char">NoFixptDivByZeroProtection</Cell>
           <Cell Class="char">UseSpecifiedMinMax</Cell>
           <Cell Class="char">EfficientTunableParamExpr</Cell>
         </Array>
         <P Name="Description"/>
         <P Name="Components" Class="double">[]</P>
-        <P Name="BlockReduction">on</P>
+        <P Name="BlockReduction">off</P>
         <P Name="BooleanDataType">off</P>
         <P Name="ConditionallyExecuteInputs">on</P>
         <P Name="DefaultParameterBehavior">Tunable</P>
@@ -626,7 +625,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="MemcpyThreshold">64</P>
         <P Name="PassReuseOutputArgsAs">Structure reference</P>
         <P Name="PassReuseOutputArgsThreshold">12</P>
-        <P Name="ExpressionDepthLimit">2147483647</P>
+        <P Name="ExpressionDepthLimit">128</P>
         <P Name="LocalBlockOutputs">on</P>
         <P Name="RollThreshold">5</P>
         <P Name="StateBitsets">off</P>
@@ -634,11 +633,11 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="ActiveStateOutputEnumStorageType">Native Integer</P>
         <P Name="ZeroExternalMemoryAtStartup">on</P>
         <P Name="ZeroInternalMemoryAtStartup">on</P>
-        <P Name="InitFltsAndDblsToZero">on</P>
+        <P Name="InitFltsAndDblsToZero">off</P>
         <P Name="NoFixptDivByZeroProtection">off</P>
         <P Name="EfficientFloat2IntCast">off</P>
         <P Name="EfficientMapNaN2IntZero">on</P>
-        <P Name="LifeSpan">inf</P>
+        <P Name="LifeSpan">auto</P>
         <P Name="MaxStackSize">Inherit from target</P>
         <P Name="BufferReusableBoundary">on</P>
         <P Name="SimCompilerOptimization">off</P>
@@ -688,8 +687,8 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="IgnoredZcDiagnostic">warning</P>
         <P Name="SolverPrmCheckMsg">none</P>
         <P Name="InheritedTsInSrcMsg">warning</P>
-        <P Name="MultiTaskDSMMsg">warning</P>
-        <P Name="MultiTaskCondExecSysMsg">none</P>
+        <P Name="MultiTaskDSMMsg">error</P>
+        <P Name="MultiTaskCondExecSysMsg">error</P>
         <P Name="MultiTaskRateTransMsg">error</P>
         <P Name="SingleTaskRateTransMsg">none</P>
         <P Name="TasksWithSamePriorityMsg">warning</P>
@@ -709,11 +708,11 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="UnderSpecifiedDataTypeMsg">none</P>
         <P Name="UnnecessaryDatatypeConvMsg">none</P>
         <P Name="VectorMatrixConversionMsg">none</P>
-        <P Name="FcnCallInpInsideContextMsg">warning</P>
+        <P Name="FcnCallInpInsideContextMsg">error</P>
         <P Name="SignalLabelMismatchMsg">none</P>
-        <P Name="UnconnectedInputMsg">warning</P>
-        <P Name="UnconnectedOutputMsg">warning</P>
-        <P Name="UnconnectedLineMsg">warning</P>
+        <P Name="UnconnectedInputMsg">none</P>
+        <P Name="UnconnectedOutputMsg">none</P>
+        <P Name="UnconnectedLineMsg">none</P>
         <P Name="UseOnlyExistingSharedCode">error</P>
         <P Name="SFcnCompatibilityMsg">none</P>
         <P Name="FrameProcessingCompatibilityMsg">error</P>
@@ -732,7 +731,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="ModelReferenceNoExplicitFinalValueMsg">none</P>
         <P Name="ModelReferenceSymbolNameMessage">warning</P>
         <P Name="ModelReferenceExtraNoncontSigs">error</P>
-        <P Name="StateNameClashWarn">warning</P>
+        <P Name="StateNameClashWarn">none</P>
         <P Name="OperatingPointInterfaceChecksumMismatchMsg">warning</P>
         <P Name="NonCurrentReleaseOperatingPointMsg">error</P>
         <P Name="ChecksumConsistencyForSSReuse">none</P>
@@ -748,9 +747,9 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="SymbolicDimsDataTypeCodeGenerationDiagnostic">error</P>
         <P Name="BlockIODiagnostic">none</P>
         <P Name="SFUnusedDataAndEventsDiag">warning</P>
-        <P Name="SFUnexpectedBacktrackingDiag">warning</P>
+        <P Name="SFUnexpectedBacktrackingDiag">error</P>
         <P Name="SFInvalidInputDataAccessInChartInitDiag">warning</P>
-        <P Name="SFNoUnconditionalDefaultTransitionDiag">warning</P>
+        <P Name="SFNoUnconditionalDefaultTransitionDiag">error</P>
         <P Name="SFTransitionOutsideNaturalParentDiag">warning</P>
         <P Name="SFUnreachableExecutionPathDiag">warning</P>
         <P Name="SFUndirectedBroadcastEventsDiag">warning</P>
@@ -759,7 +758,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="SFTemporalDelaySmallerThanSampleTimeDiag">warning</P>
         <P Name="SFSelfTransitionDiag">warning</P>
         <P Name="SFExecutionAtInitializationDiag">warning</P>
-        <P Name="SFMachineParentedDataDiag">warning</P>
+        <P Name="SFMachineParentedDataDiag">error</P>
         <P Name="IntegerSaturationMsg">warning</P>
         <P Name="AllowedUnitSystems">all</P>
         <P Name="UnitsInconsistencyMsg">warning</P>
@@ -770,7 +769,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="UnitDatabase"/>
         <P Name="UnderSpecifiedDimensionMsg">none</P>
         <P Name="DebugExecutionForFMUViaOutOfProcess">off</P>
-        <P Name="ArithmeticOperatorsInVariantConditions">warning</P>
+        <P Name="ArithmeticOperatorsInVariantConditions">error</P>
         <P Name="VariantConditionMismatch">none</P>
       </Object>
       <Object ObjectID="6" Version="22.0.0" ClassName="Simulink.HardwareCC">
@@ -784,17 +783,17 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="ProdBitPerLongLong">64</P>
         <P Name="ProdBitPerFloat">32</P>
         <P Name="ProdBitPerDouble">64</P>
-        <P Name="ProdBitPerPointer">32</P>
-        <P Name="ProdBitPerSizeT">32</P>
-        <P Name="ProdBitPerPtrDiffT">32</P>
+        <P Name="ProdBitPerPointer">64</P>
+        <P Name="ProdBitPerSizeT">64</P>
+        <P Name="ProdBitPerPtrDiffT">64</P>
         <P Name="ProdLargestAtomicInteger">Char</P>
-        <P Name="ProdLargestAtomicFloat">None</P>
-        <P Name="ProdIntDivRoundTo">Undefined</P>
-        <P Name="ProdEndianess">Unspecified</P>
-        <P Name="ProdWordSize">32</P>
+        <P Name="ProdLargestAtomicFloat">Float</P>
+        <P Name="ProdIntDivRoundTo">Zero</P>
+        <P Name="ProdEndianess">LittleEndian</P>
+        <P Name="ProdWordSize">64</P>
         <P Name="ProdShiftRightIntArith">on</P>
         <P Name="ProdLongLongMode">off</P>
-        <P Name="ProdHWDeviceType">32-bit Generic</P>
+        <P Name="ProdHWDeviceType">Intel-&gt;x86-64 (Windows64)</P>
         <P Name="TargetBitPerChar">8</P>
         <P Name="TargetBitPerShort">16</P>
         <P Name="TargetBitPerInt">32</P>
@@ -858,7 +857,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="SFSimEcho">on</P>
         <P Name="SimCtrlC">on</P>
         <P Name="SimIntegrity">on</P>
-        <P Name="SimUseLocalCustomCode">off</P>
+        <P Name="SimUseLocalCustomCode">on</P>
         <P Name="SimParseCustomCode">on</P>
         <P Name="SimAnalyzeCustomCode">off</P>
         <P Name="SimDebugExecutionForCustomCode">off</P>
@@ -872,7 +871,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="LegacyBehaviorForPersistentVarInContinuousTime">off</P>
         <P Name="CustomCodeFunctionArrayLayout" Class="double">[]</P>
         <P Name="DefaultCustomCodeFunctionArrayLayout">NotSpecified</P>
-        <P Name="CustomCodeUndefinedFunction">UseInterfaceOnly</P>
+        <P Name="CustomCodeUndefinedFunction">FilterOut</P>
         <P Name="CustomCodeGlobalsAsFunctionIO">off</P>
         <P Name="DefaultCustomCodeDeterministicFunctions">None</P>
         <P Name="CustomCodeDeterministicFunctions"/>
@@ -928,7 +927,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="TLCDebug">off</P>
         <P Name="TLCCoverage">off</P>
         <P Name="TLCAssert">off</P>
-        <P Name="RTWUseLocalCustomCode">off</P>
+        <P Name="RTWUseLocalCustomCode">on</P>
         <P Name="RTWUseSimCustomCode">off</P>
         <P Name="CustomSourceCode"/>
         <P Name="CustomHeaderCode"/>
@@ -994,19 +993,19 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
           <Object ObjectID="10" Version="22.0.0" ClassName="Simulink.CodeAppCC">
             <Array PropName="DisabledProps" Type="Cell" Dimension="1*28">
               <Cell Class="char">IgnoreCustomStorageClasses</Cell>
+              <Cell Class="char">IgnoreTestpoints</Cell>
+              <Cell Class="char">BlockCommentType</Cell>
               <Cell Class="char">InsertBlockDesc</Cell>
+              <Cell Class="char">InsertPolySpaceComments</Cell>
               <Cell Class="char">SFDataObjDesc</Cell>
+              <Cell Class="char">MATLABFcnDesc</Cell>
               <Cell Class="char">SimulinkDataObjDesc</Cell>
               <Cell Class="char">DefineNamingRule</Cell>
               <Cell Class="char">SignalNamingRule</Cell>
               <Cell Class="char">ParamNamingRule</Cell>
+              <Cell Class="char">InternalIdentifier</Cell>
               <Cell Class="char">InlinedPrmAccess</Cell>
               <Cell Class="char">CustomSymbolStr</Cell>
-              <Cell Class="char">IgnoreTestpoints</Cell>
-              <Cell Class="char">BlockCommentType</Cell>
-              <Cell Class="char">InsertPolySpaceComments</Cell>
-              <Cell Class="char">MATLABFcnDesc</Cell>
-              <Cell Class="char">InternalIdentifier</Cell>
               <Cell Class="char">CustomSymbolStrGlobalVar</Cell>
               <Cell Class="char">CustomSymbolStrType</Cell>
               <Cell Class="char">CustomSymbolStrField</Cell>
@@ -1030,7 +1029,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
             <P Name="CommentStyle">Auto</P>
             <P Name="IgnoreCustomStorageClasses">on</P>
             <P Name="IgnoreTestpoints">off</P>
-            <P Name="MaxIdLength">63</P>
+            <P Name="MaxIdLength">31</P>
             <P Name="PreserveName">off</P>
             <P Name="PreserveNameWithParent">off</P>
             <P Name="ShowEliminatedStatement">off</P>
@@ -1064,7 +1063,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
             <P Name="InsertPolySpaceComments">off</P>
             <P Name="SimulinkBlockComments">on</P>
             <P Name="BlockCommentType">BlockPathComment</P>
-            <P Name="StateflowObjectComments">on</P>
+            <P Name="StateflowObjectComments">off</P>
             <P Name="MATLABSourceComments">off</P>
             <P Name="EnableCustomComments">off</P>
             <P Name="InternalIdentifierFile"/>
@@ -1078,32 +1077,32 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
           <Object BackupClass="Simulink.TargetCC" ObjectID="11" Version="22.0.0" ClassName="Simulink.GRTTargetCC">
             <Array PropName="DisabledProps" Type="Cell" Dimension="1*19">
               <Cell Class="char">IncludeMdlTerminateFcn</Cell>
-              <Cell Class="char">GenerateAllocFcn</Cell>
               <Cell Class="char">SuppressErrorStatus</Cell>
               <Cell Class="char">ERTCustomFileBanners</Cell>
               <Cell Class="char">GenerateSampleERTMain</Cell>
-              <Cell Class="char">SupportContinuousTime</Cell>
-              <Cell Class="char">PurelyIntegerCode</Cell>
-              <Cell Class="char">SupportNonInlinedSFcns</Cell>
-              <Cell Class="char">SupportComplex</Cell>
-              <Cell Class="char">SupportAbsoluteTime</Cell>
-              <Cell Class="char">PreserveStateflowLocalDataDimensions</Cell>
               <Cell Class="char">ExistingSharedCode</Cell>
               <Cell Class="char">GenerateTestInterfaces</Cell>
               <Cell Class="char">ModelStepFunctionPrototypeControlCompliant</Cell>
-              <Cell Class="char">RemoveDisableFunc</Cell>
-              <Cell Class="char">RemoveResetFunc</Cell>
-              <Cell Class="char">MultiwordTypeDef</Cell>
+              <Cell Class="char">GenerateAllocFcn</Cell>
+              <Cell Class="char">PurelyIntegerCode</Cell>
+              <Cell Class="char">SupportComplex</Cell>
+              <Cell Class="char">SupportAbsoluteTime</Cell>
+              <Cell Class="char">SupportContinuousTime</Cell>
+              <Cell Class="char">SupportNonInlinedSFcns</Cell>
               <Cell Class="char">ParenthesesLevel</Cell>
               <Cell Class="char">ERTMultiwordTypeDef</Cell>
+              <Cell Class="char">MultiwordTypeDef</Cell>
+              <Cell Class="char">RemoveDisableFunc</Cell>
+              <Cell Class="char">RemoveResetFunc</Cell>
+              <Cell Class="char">PreserveStateflowLocalDataDimensions</Cell>
             </Array>
             <P Name="Description"/>
             <P Name="Components" Class="double">[]</P>
-            <P Name="TargetFcnLib">ansi_tfl_tmw.mat</P>
+            <P Name="TargetFcnLib">ansi_tfl_table_tmw.mat</P>
             <P Name="TargetLibSuffix"/>
             <P Name="TargetPreCompLibLocation"/>
             <P Name="GenFloatMathFcnCalls">NOT IN USE</P>
-            <P Name="TargetLangStandard">C89/C90 (ANSI)</P>
+            <P Name="TargetLangStandard">C99 (ISO)</P>
             <P Name="CodeReplacementLibrary">None</P>
             <P Name="UtilityFuncGeneration">Auto</P>
             <P Name="MultiwordTypeDef">System defined</P>
@@ -1119,7 +1118,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
             <P Name="CompOptLevelCompliant">on</P>
             <P Name="ConcurrentExecutionCompliant">on</P>
             <P Name="IncludeMdlTerminateFcn">on</P>
-            <P Name="CombineOutputUpdateFcns">off</P>
+            <P Name="CombineOutputUpdateFcns">on</P>
             <P Name="CombineSignalStateStructs">off</P>
             <P Name="GroupInternalDataByFunction">off</P>
             <P Name="SuppressErrorStatus">off</P>
@@ -1144,7 +1143,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
             <P Name="CPPClassGenCompliant">on</P>
             <P Name="AutosarCompliant">off</P>
             <P Name="MDXCompliant">off</P>
-            <P Name="GRTInterface">on</P>
+            <P Name="GRTInterface">off</P>
             <P Name="GenerateAllocFcn">off</P>
             <P Name="UseToolchainInfoCompliant">on</P>
             <P Name="GenerateSharedConstants">on</P>
@@ -1159,7 +1158,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
             <P Name="ERTSourceFileRootName">$R$E</P>
             <P Name="ERTDataFileRootName">$R_data</P>
             <Array PropName="InstructionSetExtensions" Type="Cell" Dimension="1*1">
-              <Cell Class="char">None</Cell>
+              <Cell Class="char">SSE2</Cell>
             </Array>
             <P Name="OptimizeReductions">off</P>
             <P Name="UseMalloc">off</P>
@@ -1192,14 +1191,14 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="CovPath">/</P>
         <P Name="CovSaveName">covdata</P>
         <P Name="CovCompData"/>
-        <P Name="CovMetricSettings">dw</P>
+        <P Name="CovMetricSettings">dwe</P>
         <P Name="CovFilter"/>
         <P Name="CovHTMLOptions"/>
         <P Name="CovNameIncrementing">off</P>
         <P Name="CovForceBlockReductionOff">on</P>
         <P Name="CovEnableCumulative">on</P>
-        <P Name="CovSaveCumulativeToWorkspaceVar">on</P>
-        <P Name="CovSaveSingleToWorkspaceVar">on</P>
+        <P Name="CovSaveCumulativeToWorkspaceVar">off</P>
+        <P Name="CovSaveSingleToWorkspaceVar">off</P>
         <P Name="CovCumulativeVarName">covCumulativeData</P>
         <P Name="CovCumulativeReport">off</P>
         <P Name="CovSaveOutputData">on</P>
@@ -1208,7 +1207,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="CovReportOnPause">on</P>
         <P Name="CovModelRefEnable">off</P>
         <P Name="CovModelRefExcluded"/>
-        <P Name="CovExternalEMLEnable">off</P>
+        <P Name="CovExternalEMLEnable">on</P>
         <P Name="CovSFcnEnable">on</P>
         <P Name="CovBoundaryAbsTol">1e-05</P>
         <P Name="CovBoundaryRelTol">0.01</P>
@@ -1218,64 +1217,10 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="CovMcdcMode">Masking</P>
         <P Name="CovExcludeInactiveVariants">off</P>
       </Object>
-      <Object ObjectID="13" Version="22.0.0" ClassName="SSC.SimscapeCC">
-        <P Name="DisabledProps" Class="double">[]</P>
-        <P Name="Description"/>
-        <Array PropName="Components" Type="Handle" Dimension="1*1">
-          <Object ObjectID="14" ClassName="simmechanics.ConfigurationSet">
-            <P Name="DisabledProps" Class="double">[]</P>
-            <P Name="Description">Simscape Multibody</P>
-            <Array PropName="Components" Type="Handle" Dimension="1*2">
-              <Object ObjectID="15" ClassName="simmechanics.DiagnosticsConfigSet">
-                <P Name="DisabledProps" Class="double">[]</P>
-                <P Name="Description">Diagnostics</P>
-                <P Name="Components" Class="double">[]</P>
-                <P Name="Name">DiagnosticsConfigSet</P>
-                <P Name="SimMechanicsInvalidVisualProperty">warning</P>
-                <P Name="SimMechanicsCrossSectionNullEdge">warning</P>
-                <P Name="SimMechanicsUnconnectedFramePorts">warning</P>
-                <P Name="SimMechanicsUnconnectedGeometryPorts">warning</P>
-                <P Name="SimMechanicsRedundantBlock">warning</P>
-                <P Name="SimMechanicsConflictingReferenceFrames">warning</P>
-                <P Name="SimMechanicsRigidlyBoundBlock">error</P>
-                <P Name="SimMechanicsUnsatisfiedHighPriorityTargets">warning</P>
-                <P Name="SimMechanicsJointTargetOverSpecification">error</P>
-              </Object>
-              <Object ObjectID="16" ClassName="simmechanics.ExplorerConfigSet">
-                <P Name="DisabledProps" Class="double">[]</P>
-                <P Name="Description">Explorer</P>
-                <P Name="Components" Class="double">[]</P>
-                <P Name="Name">ExplorerConfigSet</P>
-                <P Name="SimMechanicsOpenEditorOnUpdate">on</P>
-                <P Name="InternalSimMechanicsExplorerSettings"/>
-              </Object>
-            </Array>
-            <P Name="Name">SimscapeMultibody</P>
-          </Object>
-        </Array>
-        <P Name="Name">Simscape</P>
-        <P Name="EditingMode">Full</P>
-        <P Name="ExplicitSolverDiagnosticOptions">warning</P>
-        <P Name="GlobalZcOffDiagnosticOptions">warning</P>
-        <P Name="SimscapeNormalizeSystem">on</P>
-        <P Name="SimscapeNominalValues">[{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;A&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;bar&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;cm^2&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;cm^3/s&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;kJ/kg&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;kW&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;l&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;N&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;N*m&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;V&quot;}]</P>
-        <P Name="SimscapeLogType">none</P>
-        <P Name="SimscapeLogSimulationStatistics">off</P>
-        <P Name="SimscapeLogToSDI">off</P>
-        <P Name="SimscapeLogOpenViewer">off</P>
-        <P Name="SimscapeLogName">simlog</P>
-        <P Name="SimscapeLogDecimation">1</P>
-        <P Name="SimscapeLogLimitData">on</P>
-        <P Name="SimscapeLogDataHistory">5000</P>
-        <P Name="SimscapeUseOperatingPoints">off</P>
-        <P Name="SimscapeOperatingPoint"/>
-        <P Name="SimscapeCompileComponentReuse">off</P>
-        <P Name="SelectedTab"/>
-      </Object>
     </Array>
     <P Name="Name">Configuration</P>
     <P Name="CurrentDlgPage">Solver</P>
-    <P Name="ConfigPrmDlgPosition">[ 447, 92, 1403, 918 ]</P>
+    <P Name="ConfigPrmDlgPosition">[ 0, 0, 0, 0 ]</P>
     <P Name="ExtraOptions"/>
   </Object>
 </ConfigSet>
@@ -1413,7 +1358,7 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.xml
   <P Name="HasTerminateEvent">0</P>
   <P Name="PreCompExecutionDomainType">Unset</P>
   <P Name="UseModelRefSolver">0</P>
-  <P Name="SolverName">FixedStepAuto</P>
+  <P Name="SolverName">VariableStepAuto</P>
   <P Name="IsExportFunctionModel">0</P>
   <P Name="SimulinkSubDomainType">Simulink</P>
   <P Name="NumParameterArguments">0</P>
@@ -1631,8 +1576,8 @@ Configuration</P>
 __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <MF0 version="1.1" defaultPackage="slid" packageUris="http://schema.mathworks.com/mf0/slid/R2020b_20191110">
-  <System type="System" uuid="c28ac388-8c64-4968-8278-b3ec3bffa2e9">
-    <Interface type="Interface" uuid="8e02961e-d74d-4b33-a6ff-08a36e926a5d"/>
+  <System type="System" uuid="6c19612a-b29e-402f-97a7-cd1b90ccde5b">
+    <Interface type="Interface" uuid="fcdebe95-93e4-4a02-9227-ec6ed1da67ac"/>
   </System>
 </MF0>
 __MWOPC_PART_BEGIN__ /simulink/plugins/LogicAnalyzerPlugin.xml
@@ -1727,32 +1672,33 @@ __MWOPC_PART_BEGIN__ /simulink/plugins/LogicAnalyzerPlugin.xml
     ]
   }
 }</P>
+  <P Name="LogicAnalyzerSignalOrdering">553589b9-a7c2-482b-bbe9-cd1f8760e317,73c281fe-65d0-4890-ab78-34f32729d301,9280b5a4-8bb2-4bc1-8e4a-0354e087a922,c10172ea-ba63-4ec9-8032-e612f5d834ac,cfbf3a77-4a21-42d4-8bc7-27bdc09e0073,508890eb-ee4b-4908-954f-ea8134333b8a,ad428a43-fe2f-4b1e-993d-f256713295e7,892bf2a4-92ec-4b45-b3d1-b8dfa0dbae92,c6d46e03-36c6-4906-a706-c18f4f4b1cc2,6d69e43d-534e-4811-99e4-7cf71f1b5b51,3f1bb783-e502-4351-bdd5-7836b026cd3a,694add5e-c092-414a-b4e2-3974e159b22c,e591d93f-3922-4b27-ad13-b129c8f4e134,d0340cce-5c81-430b-948d-600470e45948,4eed2d57-a008-44f0-b628-78efd7f891a7,c0ea1980-4863-4688-833d-03c893c992c9</P>
 </LogicAnalyzerPlugin>
 
 __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <sltp_graph version="1.1" packageUris="http://schema.mathworks.com/mf0/sltp_mm/R2021b_202106150630">
-  <sltp.mm.core.Context type="sltp.mm.core.Context" uuid="b4cbcb48-cd69-4c70-b432-d32372f4ee78">
+  <sltp.mm.core.Context type="sltp.mm.core.Context" uuid="15146c34-188e-4d47-b3ab-b1edf8b83f23">
     <priorityDirection>HighNumberLast</priorityDirection>
     <editorState type="sltp.mm.core.EditorState" uuid="0728ef5e-1405-4285-9694-a9f3033b6925">
       <isSynchronized>true</isSynchronized>
       <panelState type="sltp.mm.core.EditorPanelState" uuid="506b4c44-2fea-4e95-81d6-9781b8574a9b"/>
     </editorState>
-    <rootTask type="sltp.mm.core.Task" uuid="771d53e4-90b3-4942-9357-3a5d21d04c2a">
-      <context type="sltp.mm.core.Context" uuid="b4cbcb48-cd69-4c70-b432-d32372f4ee78"/>
+    <rootTask type="sltp.mm.core.Task" uuid="c45d5c5c-0aa3-4897-8eeb-af3f9166b5d9">
+      <context type="sltp.mm.core.Context" uuid="15146c34-188e-4d47-b3ab-b1edf8b83f23"/>
       <explicit>false</explicit>
       <name>Default</name>
       <priority>-2147483648</priority>
-      <subgraph type="sltp.mm.core.Graph" uuid="648c7dc3-6f14-436f-b8bf-a85417c5a2a8">
-        <tasks type="sltp.mm.core.Task" uuid="68bc5f6b-c3e3-4205-8414-39be1c8b4051">
+      <subgraph type="sltp.mm.core.Graph" uuid="4e4c1fd0-e6b5-43c4-ac8f-29c42cfe35d3">
+        <tasks type="sltp.mm.core.Task" uuid="340110bc-eebc-468c-96dd-177af1f149b6">
           <baseTask>true</baseTask>
-          <context type="sltp.mm.core.Context" uuid="b4cbcb48-cd69-4c70-b432-d32372f4ee78"/>
+          <context type="sltp.mm.core.Context" uuid="15146c34-188e-4d47-b3ab-b1edf8b83f23"/>
           <explicit>false</explicit>
           <id>1</id>
           <isTimed>true</isTimed>
           <name>Cont</name>
           <priority>40</priority>
-          <rates type="sltp.mm.core.Rate" uuid="826789eb-f5a3-4fb6-95cd-6b1a7f967dc0">
+          <rates type="sltp.mm.core.Rate" uuid="5c3a1646-c6c1-4870-b115-3a23dce23fee">
             <annotation>Cont</annotation>
             <color>255</color>
             <hasBlocks>true</hasBlocks>
@@ -1762,14 +1708,24 @@ __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
             </rateSpec>
             <sti>0</sti>
           </rates>
-          <rates type="sltp.mm.core.Rate" uuid="7d62ef6d-3776-46ea-b215-cfdaf4d90f26">
+          <rates type="sltp.mm.core.Rate" uuid="d4847a9d-05c9-44e9-95f8-59eba4fa04e7">
+            <annotation>FiM</annotation>
+            <color>-2139062017</color>
+            <hasBlocks>true</hasBlocks>
+            <rateSpec type="sltp.mm.core.RateSpec">
+              <offset>1.0</offset>
+              <period>0.0</period>
+            </rateSpec>
+            <sti>1</sti>
+          </rates>
+          <rates type="sltp.mm.core.Rate" uuid="c2e14973-353c-412e-ae09-83f603b05829">
             <annotation>D1</annotation>
             <color>-436207361</color>
             <hasBlocks>true</hasBlocks>
             <rateSpec type="sltp.mm.core.RateSpec">
               <period>.001</period>
             </rateSpec>
-            <sti>1</sti>
+            <sti>2</sti>
           </rates>
         </tasks>
       </subgraph>
@@ -1806,6 +1762,12 @@ __MWOPC_PART_BEGIN__ /simulink/ScheduleEditor.xml
           <hasBlocks>true</hasBlocks>
           <rate>0</rate>
           <title>Cont</title>
+        </rates>
+        <rates type="sltp.mm.syntax.RateData">
+          <color>#808080</color>
+          <hasBlocks>true</hasBlocks>
+          <rate>[0, 1]</rate>
+          <title>FiM</title>
         </rates>
         <rates type="sltp.mm.syntax.RateData">
           <color>#e60000</color>
@@ -2743,8 +2705,6 @@ __MWOPC_PART_BEGIN__ /simulink/stateflow/chart_65.xml
   <P Name="viewLimits">[0 156.75 0 153.75]</P>
   <P Name="screen">[1 1 3600 1200 1.180555555555556]</P>
   <P Name="viewObj">65</P>
-  <P Name="visible">1</P>
-  <subviewS/>
   <P Name="ssIdHighWaterMark">5</P>
   <P Name="decomposition">CLUSTER_CHART</P>
   <P Name="type">EML_CHART</P>
@@ -17936,7 +17896,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_2360.xml
   <P Name="Open">on</P>
   <P Name="SetExecutionDomain">off</P>
   <P Name="ExecutionDomainType">Deduce</P>
-  <P Name="ZoomFactor">125</P>
   <P Name="SimulinkSubDomain">Simulink</P>
   <Block BlockType="Inport" Name="VhclCtrl.PT" SID="2361">
     <P Name="Position">[-1250, 347, -1220, 363]</P>
@@ -19615,7 +19574,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_2360.xml
     <P Name="Ports">[2]</P>
     <P Name="Position">[535, 1986, 565, 2019]</P>
     <P Name="ZOrder">2564</P>
-    <P Name="ScopeSpecificationString">Simulink.scopes.TimeScopeBlockCfg(&apos;CurrentConfiguration&apos;, extmgr.ConfigurationSet(extmgr.Configuration(&apos;Core&apos;,&apos;General UI&apos;,true),extmgr.Configuration(&apos;Core&apos;,&apos;Source UI&apos;,true),extmgr.Configuration(&apos;Sources&apos;,&apos;WiredSimulink&apos;,true,&apos;DataLoggingVariableName&apos;,&apos;ScopeData2&apos;),extmgr.Configuration(&apos;Visuals&apos;,&apos;Time Domain&apos;,true),extmgr.Configuration(&apos;Tools&apos;,&apos;Plot Navigation&apos;,true),extmgr.Configuration(&apos;Tools&apos;,&apos;Measurements&apos;,true,&apos;Version&apos;,&apos;2022a&apos;)),&apos;Version&apos;,&apos;2022a&apos;,&apos;VisibleAtModelOpen&apos;,&apos;on&apos;)</P>
+    <P Name="ScopeSpecificationString">Simulink.scopes.TimeScopeBlockCfg(&apos;CurrentConfiguration&apos;, extmgr.ConfigurationSet(extmgr.Configuration(&apos;Core&apos;,&apos;General UI&apos;,true),extmgr.Configuration(&apos;Core&apos;,&apos;Source UI&apos;,true),extmgr.Configuration(&apos;Sources&apos;,&apos;WiredSimulink&apos;,true,&apos;DataLoggingVariableName&apos;,&apos;ScopeData2&apos;),extmgr.Configuration(&apos;Visuals&apos;,&apos;Time Domain&apos;,true,&apos;SerializedDisplays&apos;,{struct(&apos;MinYLimReal&apos;,&apos;-1.00000&apos;,&apos;MaxYLimReal&apos;,&apos;1.00000&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0.00000&apos;,&apos;MaxYLimMag&apos;,&apos;1.00000&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],&apos;Title&apos;,&apos;%&lt;SignalLabel&gt;&apos;,&apos;LinePropertiesCache&apos;,{{}},&apos;UserDefinedChannelNames&apos;,{{}},&apos;NumLines&apos;,2,&apos;LineNames&apos;,{{&apos;Demux/5&apos;,&apos;FR.Fy&apos;}},&apos;ShowContent&apos;,true,&apos;Placement&apos;,1)},&apos;DisplayPropertyDefaults&apos;,struct(&apos;MinYLimReal&apos;,&apos;-1.00000&apos;,&apos;MaxYLimReal&apos;,&apos;1.00000&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0.00000&apos;,&apos;MaxYLimMag&apos;,&apos;1.00000&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration(&apos;Tools&apos;,&apos;Plot Navigation&apos;,true),extmgr.Configuration(&apos;Tools&apos;,&apos;Measurements&apos;,true,&apos;Version&apos;,&apos;2022a&apos;)),&apos;Version&apos;,&apos;2022a&apos;)</P>
     <P Name="NumInputPorts">2</P>
     <P Name="Floating">off</P>
   </Block>
@@ -19631,7 +19590,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_2360.xml
     <P Name="Ports">[2]</P>
     <P Name="Position">[535, 2031, 565, 2064]</P>
     <P Name="ZOrder">2565</P>
-    <P Name="ScopeSpecificationString">Simulink.scopes.TimeScopeBlockCfg(&apos;CurrentConfiguration&apos;, extmgr.ConfigurationSet(extmgr.Configuration(&apos;Core&apos;,&apos;General UI&apos;,true),extmgr.Configuration(&apos;Core&apos;,&apos;Source UI&apos;,true),extmgr.Configuration(&apos;Sources&apos;,&apos;WiredSimulink&apos;,true,&apos;DataLoggingVariableName&apos;,&apos;ScopeData3&apos;),extmgr.Configuration(&apos;Visuals&apos;,&apos;Time Domain&apos;,true),extmgr.Configuration(&apos;Tools&apos;,&apos;Plot Navigation&apos;,true),extmgr.Configuration(&apos;Tools&apos;,&apos;Measurements&apos;,true,&apos;Version&apos;,&apos;2022a&apos;)),&apos;Version&apos;,&apos;2022a&apos;,&apos;VisibleAtModelOpen&apos;,&apos;on&apos;)</P>
+    <P Name="ScopeSpecificationString">Simulink.scopes.TimeScopeBlockCfg(&apos;CurrentConfiguration&apos;, extmgr.ConfigurationSet(extmgr.Configuration(&apos;Core&apos;,&apos;General UI&apos;,true),extmgr.Configuration(&apos;Core&apos;,&apos;Source UI&apos;,true),extmgr.Configuration(&apos;Sources&apos;,&apos;WiredSimulink&apos;,true,&apos;DataLoggingVariableName&apos;,&apos;ScopeData3&apos;),extmgr.Configuration(&apos;Visuals&apos;,&apos;Time Domain&apos;,true,&apos;SerializedDisplays&apos;,{struct(&apos;MinYLimReal&apos;,&apos;-1.00000&apos;,&apos;MaxYLimReal&apos;,&apos;1.00000&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0.00000&apos;,&apos;MaxYLimMag&apos;,&apos;1.00000&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],&apos;Title&apos;,&apos;%&lt;SignalLabel&gt;&apos;,&apos;LinePropertiesCache&apos;,{{}},&apos;UserDefinedChannelNames&apos;,{{}},&apos;NumLines&apos;,2,&apos;LineNames&apos;,{{&apos;Demux/6&apos;,&apos;RL.Fy&apos;}},&apos;ShowContent&apos;,true,&apos;Placement&apos;,1)},&apos;DisplayPropertyDefaults&apos;,struct(&apos;MinYLimReal&apos;,&apos;-1.00000&apos;,&apos;MaxYLimReal&apos;,&apos;1.00000&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0.00000&apos;,&apos;MaxYLimMag&apos;,&apos;1.00000&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration(&apos;Tools&apos;,&apos;Plot Navigation&apos;,true),extmgr.Configuration(&apos;Tools&apos;,&apos;Measurements&apos;,true,&apos;Version&apos;,&apos;2022a&apos;)),&apos;Version&apos;,&apos;2022a&apos;,&apos;Position&apos;,[1 49 2560 1314])</P>
     <P Name="NumInputPorts">2</P>
     <P Name="Floating">off</P>
   </Block>
@@ -19639,7 +19598,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_2360.xml
     <P Name="Ports">[2]</P>
     <P Name="Position">[535, 2076, 565, 2109]</P>
     <P Name="ZOrder">2566</P>
-    <P Name="ScopeSpecificationString">Simulink.scopes.TimeScopeBlockCfg(&apos;CurrentConfiguration&apos;, extmgr.ConfigurationSet(extmgr.Configuration(&apos;Core&apos;,&apos;General UI&apos;,true),extmgr.Configuration(&apos;Core&apos;,&apos;Source UI&apos;,true),extmgr.Configuration(&apos;Sources&apos;,&apos;WiredSimulink&apos;,true,&apos;DataLoggingVariableName&apos;,&apos;ScopeData4&apos;),extmgr.Configuration(&apos;Visuals&apos;,&apos;Time Domain&apos;,true),extmgr.Configuration(&apos;Tools&apos;,&apos;Plot Navigation&apos;,true),extmgr.Configuration(&apos;Tools&apos;,&apos;Measurements&apos;,true,&apos;Version&apos;,&apos;2022a&apos;)),&apos;Version&apos;,&apos;2022a&apos;,&apos;VisibleAtModelOpen&apos;,&apos;on&apos;)</P>
+    <P Name="ScopeSpecificationString">Simulink.scopes.TimeScopeBlockCfg(&apos;CurrentConfiguration&apos;, extmgr.ConfigurationSet(extmgr.Configuration(&apos;Core&apos;,&apos;General UI&apos;,true),extmgr.Configuration(&apos;Core&apos;,&apos;Source UI&apos;,true),extmgr.Configuration(&apos;Sources&apos;,&apos;WiredSimulink&apos;,true,&apos;DataLoggingVariableName&apos;,&apos;ScopeData4&apos;),extmgr.Configuration(&apos;Visuals&apos;,&apos;Time Domain&apos;,true,&apos;SerializedDisplays&apos;,{struct(&apos;MinYLimReal&apos;,&apos;-1.00000&apos;,&apos;MaxYLimReal&apos;,&apos;1.00000&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0.00000&apos;,&apos;MaxYLimMag&apos;,&apos;1.00000&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],&apos;Title&apos;,&apos;%&lt;SignalLabel&gt;&apos;,&apos;LinePropertiesCache&apos;,{{}},&apos;UserDefinedChannelNames&apos;,{{}},&apos;NumLines&apos;,2,&apos;LineNames&apos;,{{&apos;Demux/7&apos;,&apos;RR.Fy&apos;}},&apos;ShowContent&apos;,true,&apos;Placement&apos;,1)},&apos;DisplayPropertyDefaults&apos;,struct(&apos;MinYLimReal&apos;,&apos;-1.00000&apos;,&apos;MaxYLimReal&apos;,&apos;1.00000&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0.00000&apos;,&apos;MaxYLimMag&apos;,&apos;1.00000&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration(&apos;Tools&apos;,&apos;Plot Navigation&apos;,true),extmgr.Configuration(&apos;Tools&apos;,&apos;Measurements&apos;,true,&apos;Version&apos;,&apos;2022a&apos;)),&apos;Version&apos;,&apos;2022a&apos;)</P>
     <P Name="NumInputPorts">2</P>
     <P Name="Floating">off</P>
   </Block>
@@ -21201,7 +21160,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_2360.xml
   <Line>
     <P Name="ZOrder">4100</P>
     <P Name="Src">3473#out:1</P>
-    <P Name="Points">[65, 0; 0, -110]</P>
+    <P Name="Points">[34, 0; 0, -110]</P>
     <P Name="Dst">3474#in:2</P>
   </Line>
   <Line>
@@ -29967,10 +29926,10 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="IsTabbed" Class="logical">1</P>
           <P Name="ViewObjType" Class="char">SimulinkTopLevel</P>
           <P Name="LoadSaveID" Class="char">0</P>
-          <P Name="Extents" Class="double">[2522.0, 1166.0]</P>
+          <P Name="Extents" Class="double">[2522.0, 796.0]</P>
           <P Name="ZoomFactor" Class="double">1.7499999999999998</P>
           <P Name="Offset" Class="double">[-327.30481392209003, -282.01178002863332]</P>
-          <P Name="SceneRectInView" Class="double">[-327.30481392209003, -282.01178002863332, 1441.1428571428573, 666.28571428571433]</P>
+          <P Name="SceneRectInView" Class="double">[-327.30481392209003, -282.01178002863332, 1441.1428571428573, 454.85714285714289]</P>
         </Object>
         <Object ObjectID="6">
           <P Name="IsActive" Class="logical">1</P>
@@ -29978,9 +29937,9 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
           <P Name="LoadSaveID" Class="char">2360</P>
           <P Name="Extents" Class="double">[2522.0, 796.0]</P>
-          <P Name="ZoomFactor" Class="double">1.25</P>
-          <P Name="Offset" Class="double">[-1185.2039381295569, 1686.9307624851331]</P>
-          <P Name="SceneRectInView" Class="double">[-1185.2039381295569, 1686.9307624851331, 2017.6, 636.8]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-1283.1004309696664, 1216.0]</P>
+          <P Name="SceneRectInView" Class="double">[-1283.1004309696664, 1216.0, 2522.0, 796.0]</P>
         </Object>
         <Object ObjectID="7">
           <P Name="IsActive" Class="logical">0</P>

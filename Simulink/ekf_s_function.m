@@ -49,7 +49,12 @@ function sys = mdlUpdate(t, x, u)
     F_yfl_max = 1000;  % Maximum lateral tire force
     Q = diag([1, 1, 0.001, 100, 100, 100, 100]); % Process Noise Covariance Matrix
     R = diag([1, 1, 0.001, 0.001, 0.001]); % Measurement Noise Covariance Matrix 
-    
+    h = [x_est(1);
+        x_est(2);
+        x_est(3);
+        (1/m) * ((u(2) + u(3)) / R * cos(u(1)) - (x_est(4) + x_est(5)) * sin(u(1)) + (u(4) + u(5)) / R - C_av * x_est(1)^2);
+        (1/m) * ((u(2) + u(3)) / R * sin(u(1)) + (x_est(4) + x_est(5)) * cos(u(1)) + x_est(6) + x_est(7));
+        ];
     % Jacobian
     F = [-(2*C_av*x_est(1))/m, x_est(3), x_est(2), -sin(delta)/m, -sin(delta)/m, 0, 0;
         x_est(3), 0, x_est(1), cos(delta)/m, cos(delta)/m, 1/m, 1/m;
@@ -79,10 +84,15 @@ function sys = mdlUpdate(t, x, u)
 
     % Kalman Gain
     K = P_pred * H' * inv(H*P_pred*H'+R);
-
+    h = [x_pred(1);
+        x_pred(2);
+        x_pred(3);
+        (1/m) * ((u(2) + u(3)) / R * cos(u(1)) - (x_pred(4) + x_pred(5)) * sin(u(1)) + (u(4) + u(5)) / Radius - C_av * x_pred(1)^2);
+        (1/m) * ((u(2) + u(3)) / R * sin(u(1)) + (x_pred(4) + x_pred(5)) * cos(u(1)) + x_pred(6) + x_pred(7));
+        ];
 
     % Update step
-    x_est = x_pred + K * (z-H*x_pred);
+    x_est = x_pred + K * (z-h);
     P_est = (eye(7) - K * H) * P_pred;
 
     % Pack state vector
