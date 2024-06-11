@@ -2,7 +2,6 @@ function [sys, x0, str, ts] = ekf_s_function(t, x, u, flag)
     switch flag
         case 0
             [sys, x0, str, ts] = mdlInitializeSizes;
-
         case 2
             sys = mdlUpdate(t, x, u);
         case 3
@@ -19,7 +18,7 @@ function [sys, x0, str, ts] = mdlInitializeSizes
     sizes.NumContStates  = 0;
     sizes.NumDiscStates  = 7 * 7 + 7;  % [x; P(:)] where P is 7x7, thus 49 elements
     sizes.NumOutputs     = 7;  % State estimate [V_x; V_y; gamma; F_yfl; F_yfr; F_yrl; F_yrr]
-    sizes.NumInputs      = 10;  % [delta; T_d1 - T_b1; T_d2 - T_b2; T_d3 - T_b3; T_d4 - T_b4; z]
+    sizes.NumInputs      = 10;  % [delta; T_d1 - T_b1; T_d2 - T_b2; T_d3 - T_b3; T_d4 - T_b4; measurement z]
     sizes.DirFeedthrough = 0;
     sizes.NumSampleTimes = 1;
     
@@ -27,10 +26,6 @@ function [sys, x0, str, ts] = mdlInitializeSizes
     x0  = [0; 0; 0; 0; 0; 0; 0; reshape(eye(7), [], 1)];  % Initial state and covariance matrix
     str = [];
     ts  = [-1 0];  % Sample time
-end
-
-function sys = mdlDerivatives(t, x, u)
-    sys = [];
 end
 
 function sys = mdlUpdate(t, x, u)
