@@ -39,16 +39,16 @@ function sys = mdlUpdate(t, x, u)
     z = u(6:10);
 
     % Define system parameters
-    m = 1500;  % Mass of the vehicle
-    Radius = 0.3;  % Wheel radius
-    C_av = 0.01;  % Aerodynamic coefficient
-    l_f = 1.2;  % Distance from CG to front axle
-    l_r = 1.6;  % Distance from CG to rear axle
-    track = 1.5;  % Track width
-    sigma = 1;  % relaxation Length to tire force
-    F_yfl_max = 3000;  % Maximum lateral tire force
-    Q = diag([1, 1, 0.0001, 1000, 1000, 1000, 1000]); % Process Noise Covariance Matrix
-    R = diag([0.0001, 0.001, 0.0001, 0.0001, 0.000001]); % Measurement Noise Covariance Matrix 
+    m = 296;  % Mass of the vehicle
+    Radius = 0.262;  % Wheel radius
+    C_av = 0.5 * 1.293 * 1.472 * 1.1;  % Aerodynamic coefficient (0.5 * air_density(=1.293 kg m−3) * air_drag * cross_sectional_area)
+    l_f = 0.813;  % Distance from CG to front axle
+    l_r = 0.787;  % Distance from CG to rear axle
+    track = 1.242;  % Track width
+    sigma = 0.1;  % relaxation Length to tire force
+    F_yfl_max = 1000;  % Maximum lateral tire force
+    Q = diag([1, 1, 0.001, 100, 100, 100, 100]); % Process Noise Covariance Matrix
+    R = diag([1, 1, 0.001, 0.001, 0.001]); % Measurement Noise Covariance Matrix 
     
     % Jacobian
     F = [-(2*C_av*x_est(1))/m, x_est(3), x_est(2), -sin(delta)/m, -sin(delta)/m, 0, 0;
@@ -78,7 +78,7 @@ function sys = mdlUpdate(t, x, u)
     P_pred = F * P_est * F' + Q;
 
     % Kalman Gain
-    K = P_pred * H'/(H*P_pred*H'+R);
+    K = P_pred * H' * inv(H*P_pred*H'+R);
 
 
     % Update step
@@ -105,7 +105,7 @@ function x_pred = stateTransitionFunction(x, delta, Torque, m, R, C_av, l_f, l_r
 
     T_fl = Torque(1);
     T_fr = Torque(2);
-    T_rl = Torque(3);
+    T_rl = Torque(3); 
     T_rr = Torque(4);
 
 
