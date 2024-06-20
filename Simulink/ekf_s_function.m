@@ -36,47 +36,38 @@ function sys = mdlDerivatives(t, x, u)
     sys = [];
 end
 
-function [a_fl, a_fr, a_rl, a_rr] = tire_slip(Vx, Vy, gamma, lf, lr, delta1, delta2)
+function [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb] = dugoff(m, Vx, Vy, gamma, lf, lr, delta1, delta2, Fy_fl, Fy_fr, Fy_rl, Fy_rr)
+    % tire slip and cornering stiffness calculation
     if Vx < 1.0 % prevent divided by zero
         a_fl = 0.0;
         a_fr = 0.0;
         a_rl = 0.0;
         a_rr = 0.0;
-    else
-        a_fl = -delta1 + atan2((Vy + lf*gamma), Vx);
-        a_fr = -delta2 + atan2((Vy + lf*gamma), Vx);
-        a_rl = atan2((Vy - lr*gamma), Vx);
-        a_rr = a_rl;
-    end
-end
 
-function [Cy_fl, Cy_fr, Cy_rl, Cy_rr] = cornering_stiffness(Fy_fl, Fy_fr, Fy_rl, Fy_rr)
-    if (a_fl == 0.0) || (a_fr == 0.0) || (a_rl == 0.0) || (a_rr == 0.0)
         Cy_fl = 50000; % need to be fixed
         Cy_fr = 50000; % need to be fixed
         Cy_rl = 50000; % need to be fixed
         Cy_rr = 50000; % need to be fixed
+
     else
+        a_fl = -delta1 + atan2((Vy + lf*gamma), Vx);
+        a_fr = -delta2 + atan2((Vy + lf*gamma), Vx);
+        a_rl = atan2((Vy - lr*gamma), Vx);
+        a_rr = atan2((Vy - lr*gamma), Vx);
+
         Cy_fl = Fy_fl / a_fl;
         Cy_fr = Fy_fr / a_fr;
         Cy_rl = Fy_rl / a_rl;
         Cy_rr = Fy_rr / a_rr;
     end
-end
-
-function [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb] = dugoff(m, Vx, Vy, gamma, lf, lr, delta1, delta2, Fy_fl, Fy_fr, Fy_rl, Fy_rr)
-    [a_fl, a_fr, a_rl, a_rr] = tire_slip(Vx, Vy, gamma, lf, lr, delta1, delta2);
-    [Cy_fl, Cy_fr, Cy_rl, Cy_rr] = cornering_stiffness(Fy_fl, Fy_fr, Fy_rl, Fy_rr);
     
-    Fz = m * -9.81; % Total vertical load
+    Fz = m * 9.81; % Total vertical load
     mu = 0.9; % road firction coefficient
-
-    lamda_fl = (mu * Fz) / (2 * Cy_fl * abs(tan(a_fl)));
-    lamda_fr = (mu * Fz) / (2 * Cy_fr * abs(tan(a_fr)));
-    lamda_rl = (mu * Fz) / (2 * Cy_rl * abs(tan(a_rl)));
-    lamda_rr = (mu * Fz) / (2 * Cy_rr * abs(tan(a_rr)));
     
-    lambda = [lambda_fl, lambda_fr, lambda_rl, lambda_rr];
+    lambda = [(mu * Fz) / (2 * Cy_fl * abs(tan(a_fl))), ... % lambda_fl
+              (mu * Fz) / (2 * Cy_fr * abs(tan(a_fr))), ... % lambda_fr
+              (mu * Fz) / (2 * Cy_rl * abs(tan(a_rl))), ... % lambda_rl
+              (mu * Fz) / (2 * Cy_rr * abs(tan(a_rr)))];    % lambda_rr
 
     for i = 1:length(lambda)
         if lambda(i) >= 1
@@ -114,12 +105,13 @@ function sys = mdlUpdate(t, x, u)
     lf = 0.813;  % Distance from CG to front axle
     lr = 0.787;  % Distance from CG to rear axle
     track = 1.242;  % Track width
+
     sigma = 0.1;  % relaxation Length to tire force (need to be fixed)
 
     Q = diag([1, 1, 0.0001, 1000, 1000, 1000, 1000]); % Process Noise Covariance Matrix
     R = diag([0.0001, 0.001, 0.000001, 0.0001, 0.0001]); % Measurement Noise Covariance Matrix 
     
-    [x_pred, Fy_b] = stateTransitionFunction(x_est, delta, delta1, delta2, torque, m, radius, Cav, lf, lr, track, dt, sigma, F_yfl_max);
+    [x_pred, Fy_b] = stateTransitionFunction(x_est, delta, delta1, delta2, torque, m, radius, Cav, lf, lr, track, dt, sigma);
     
     % Jacobian
     F = [-(2*Cav*x_est(1))/m, x_est(3), x_est(2), -sin(delta)/m, -sin(delta)/m, 0, 0;
@@ -130,7 +122,7 @@ function sys = mdlUpdate(t, x, u)
          (Fy_b(3) - x_est(6))/sigma, 0, 0, 0, 0, -x_est(1)/sigma, 0;
          (Fy_b(4) - x_est(7))/sigma, 0, 0, 0, 0, 0, -x_est(1)/sigma];
     
-    P_pred = F*P_est*F' + Q;
+    P_pred = (F*P_est*F') + Q;
 
     % Kalman Gain
     H = [1, 0, 0, 0, 0, 0, 0;
@@ -140,6 +132,7 @@ function sys = mdlUpdate(t, x, u)
          0, 0, 0, cos(delta)/m, cos(delta)/m, 1/m, 1/m];
 
     K = P_pred * H' / (H*P_pred*H' + R);
+
     h = [x_pred(1);
          x_pred(2);
          x_pred(3);
@@ -158,7 +151,7 @@ function sys = mdlOutputs(t, x, u)
     sys = x(1:7);  % Output the state estimate
 end
 
-function [x_pred, Fy_b] = stateTransitionFunction(x, delta, delta1, delta2, torque, m, radius, C_av, l_f, l_r, track, dt, sigma)
+function [x_pred, Fy_b] = stateTransitionFunction(x, delta, delta1, delta2, torque, m, radius, Cav, lf, lr, track, dt, sigma)
     % Define the state transition function f(x)
     Vx = x(1);
     Vy = x(2);
@@ -174,15 +167,15 @@ function [x_pred, Fy_b] = stateTransitionFunction(x, delta, delta1, delta2, torq
     T_rr = torque(4);
     
     [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb] = dugoff(m, Vx, Vy, gamma, lf, lr, delta1, delta2, Fy_fl, Fy_fr, Fy_rl, Fy_rr);
+    Fy_b = [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb];
 
-    x1_dot = 1/m * (1/radius * (T_fl + T_fr) * cos(delta) - (Fy_fl + Fy_fr) * sin(delta) + 1/radius * (T_rl + T_rr) - C_av * Vx^2) + Vy * gamma;
+    x1_dot = 1/m * (1/radius * (T_fl + T_fr) * cos(delta) - (Fy_fl + Fy_fr) * sin(delta) + 1/radius * (T_rl + T_rr) - Cav * Vx^2) + Vy * gamma;
     x2_dot = 1/m * (1/radius * (T_fl + T_fr) * sin(delta) + (Fy_fl + Fy_fr) * cos(delta) + (Fy_rl + Fy_rr)) + Vx * gamma;
-    x3_dot = 1/m * (l_f * (1/radius * (T_fl + T_fr) * sin(delta) + (Fy_fl + Fy_fr) * cos(delta)) +  track * (1/radius * (T_fl - T_fr) * cos(delta) + (-Fy_fl + Fy_fr) * cos(delta) + 1/radius * (T_rl - T_rr)) - l_r * (Fy_rl + Fy_rr));
+    x3_dot = 1/m * (lf * (1/radius * (T_fl + T_fr) * sin(delta) + (Fy_fl + Fy_fr) * cos(delta)) +  track * (1/radius * (T_fl - T_fr) * cos(delta) + (-Fy_fl + Fy_fr) * cos(delta) + 1/radius * (T_rl - T_rr)) - lr * (Fy_rl + Fy_rr));
     x4_dot = Vx / sigma * (-Fy_fl + Fy_flb);
     x5_dot = Vx / sigma * (-Fy_fr + Fy_frb);  
     x6_dot = Vx / sigma * (-Fy_rl + Fy_rlb);  
     x7_dot = Vx / sigma * (-Fy_rr + Fy_rrb); %  have to check what kind of values to insert  
  
     x_pred = x + [x1_dot; x2_dot; x3_dot; x4_dot; x5_dot; x6_dot; x7_dot] * dt;  
-    Fy_b = [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb];
 end
