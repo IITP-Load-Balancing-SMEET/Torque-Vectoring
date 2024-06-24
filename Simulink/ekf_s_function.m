@@ -18,17 +18,12 @@ end
 
 function [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb] = dugoff(Vx, Vy, Fy_fl, Fy_fr, Fy_rl, Fy_rr, delta1, delta2, m, gamma, lf, lr)
     % tire slip and cornering stiffness calculation
-    disp(Vx);
-    if Vx < 1.0 % prevent divided by zero
-        a_fl = 0.0;
-        a_fr = 0.0;
-        a_rl = 0.0;
-        a_rr = 0.0;
 
-        Cy_fl = 50000; % need to be fixed
-        Cy_fr = 50000; % need to be fixed
-        Cy_rl = 50000; % need to be fixed
-        Cy_rr = 50000; % need to be fixed
+    if Vx < 1.0 % prevent divided by zero
+        Fy_flb = 0.0;
+        Fy_frb = 0.0;
+        Fy_rlb = 0.0;
+        Fy_rrb = 0.0;
 
     else
         a_fl = -delta1 + atan2((Vy + lf*gamma), Vx);
@@ -40,28 +35,31 @@ function [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb] = dugoff(Vx, Vy, Fy_fl, Fy_fr, Fy_rl, 
         Cy_fr = Fy_fr / a_fr;
         Cy_rl = Fy_rl / a_rl;
         Cy_rr = Fy_rr / a_rr;
-    end
 
-    Fz = m * 9.81; % Total vertical load
-    mu = 0.9; % road firction coefficient
+
+        Fz = m * 9.81; % Total vertical load
+        mu = 0.9; % road firction coefficient
     
-    lambda = [(mu * Fz) / (2 * Cy_fl * abs(tan(a_fl))), ... % lambda_fl
-              (mu * Fz) / (2 * Cy_fr * abs(tan(a_fr))), ... % lambda_fr
-              (mu * Fz) / (2 * Cy_rl * abs(tan(a_rl))), ... % lambda_rl
-              (mu * Fz) / (2 * Cy_rr * abs(tan(a_rr)))];    % lambda_rr
+        lambda = [(mu * Fz) / (2 * Cy_fl * abs(tan(a_fl))), ... % lambda_fl
+                  (mu * Fz) / (2 * Cy_fr * abs(tan(a_fr))), ... % lambda_fr
+                  (mu * Fz) / (2 * Cy_rl * abs(tan(a_rl))), ... % lambda_rl
+                  (mu * Fz) / (2 * Cy_rr * abs(tan(a_rr)))];    % lambda_rr
 
-    for i = 1:length(lambda)
-        if lambda(i) >= 1
-            lambda(i) = 1.0;
-        else
-            lambda(i) = (2 - lambda(i)) * lambda(i);
-        end    
+        for i = 1:length(lambda)
+            if lambda(i) >= 1
+                lambda(i) = 1.0;
+            else
+                lambda(i) = (2 - lambda(i)) * lambda(i);
+            end    
+        end
+
+        Fy_flb = -Cy_fl * tan(a_fl) * lambda(1);
+        Fy_frb = -Cy_fr * tan(a_fr) * lambda(2);
+        Fy_rlb = -Cy_rl * tan(a_rl) * lambda(3);
+        Fy_rrb = -Cy_rr * tan(a_rr) * lambda(4);
+        
     end
 
-    Fy_flb = -Cy_fl * tan(a_fl) * lambda(1);
-    Fy_frb = -Cy_fr * tan(a_fr) * lambda(2);
-    Fy_rlb = -Cy_rl * tan(a_rl) * lambda(3);
-    Fy_rrb = -Cy_rr * tan(a_rr) * lambda(4);
 end
 
 
@@ -73,14 +71,6 @@ function [x_pred, Fy_b] = stateTransitionFunction(x_est, u_c, params, dt)
     Fy_fr = x_est(5);
     Fy_rl = x_est(6);
     Fy_rr = x_est(7);
-    
-    
-    
-    
-    \\
-    \\
-    ]\
-    ZX 5fl, Fy_fr, Fy_rl, Fy_rr]);
 
     delta1 = u_c(1);
     delta2 = u_c(2);
@@ -104,7 +94,7 @@ function [x_pred, Fy_b] = stateTransitionFunction(x_est, u_c, params, dt)
     Fy_b = [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb];
 
     x1_dot = 1/m * ((Fx_fl*cos(delta1)) + (Fx_fr*cos(delta2)) - (Fy_fl*sin(delta1)) - (Fy_fr*sin(delta2)) + Fx_rl + Fx_rr - (Cav*Vx^2)) + (Vy*gamma);
-    x2_dot = 1/m * ((Fx_fl*sin(delta1)) + (Fx_fr*sin(delta2)) + (Fy_fl*cos(delta1)) + (Fy_fr*cos(delta2)) + Fy_rl + Fy_rr) + (Vx*gamma);
+    x2_dot = 1/m * ((Fx_fl*sin(delta1)) + (Fx_fr*sin(delta2)) + (Fy_fl*cos(delta1)) + (Fy_fr*cos(delta2)) + Fy_rl + Fy_rr) - (Vx*gamma);
     x3_dot = 1/Iz * (lf * (Fx_fl*sin(delta1) + Fx_fr*sin(delta2) + Fy_fl*cos(delta1) + Fy_fr*cos(delta2)) +  tr * (Fx_fl*cos(delta1) - Fx_fr*cos(delta2) - Fy_rl*sin(delta1) + Fy_rr*sin(delta2)));
     x4_dot = (Vx/sigma) * (-Fy_fl + Fy_flb);
     x5_dot = (Vx/sigma) * (-Fy_fr + Fy_frb);  
@@ -141,7 +131,7 @@ end
 function sys = mdlUpdate(t, x, u)
     % Define system parameters
     m = (226.26 + 70);  % Mass of the vehicle + 70 kg Load
-    Iz = 51.12; % moment of inertia about yaw axis
+    Iz = 146.827; % moment of inertia about yaw axis
     radius = 0.262;  % Wheel radius
     Cav = (0.5 * 1.293 * 1.4285 * 1.1);  % Aerodynamic coefficient (0.5 * air_density(=1.293 kg m−3) * air_drag * cross_sectional_area)
     lf = 0.813;  % Distance from CG to front axle
@@ -172,14 +162,14 @@ function sys = mdlUpdate(t, x, u)
 
     % Jacobian
     F = [-(2*Cav*x_est(1))/m, x_est(3), x_est(2), -sin(delta)/m, -sin(delta)/m, 0, 0;
-         x_est(3), 0, x_est(1), cos(delta)/m, cos(delta)/m, 1/m, 1/m;
-         0, 0, 0, (lf*cos(delta) - tr*cos(delta))/m, (lf*cos(delta) + tr*cos(delta))/m, -lr/m, -lr/m;
+         -x_est(3), 0, -x_est(1), cos(delta)/m, cos(delta)/m, 1/m, 1/m;
+         0, 0, 0, (lf*cos(delta) - tr*sin(delta))/Iz, (lf*cos(delta) + tr*sin(delta))/Iz, -lr/Iz, -lr/Iz;
          (Fy_b(1) - x_est(4))/sigma, 0, 0, -x_est(1)/sigma, 0, 0, 0;
          (Fy_b(2) - x_est(5))/sigma, 0, 0, 0, -x_est(1)/sigma, 0, 0;
          (Fy_b(3) - x_est(6))/sigma, 0, 0, 0, 0, -x_est(1)/sigma, 0;
-         (Fy_b(4) - x_est(7))/sigma, 0, 0, 0, 0, 0, -x_est(1)/sigma];
+         (Fy_b(4) - x_est(7))/sigma, 0, 0, 0, 0, 0, -x_est(1)/sigma] * dt;
     
-    P_pred = (F*P_est*F') + Q;
+    P_pred = (F*P_est*F.') + Q;
 
     % Kalman Gain
     H = [1, 0, 0, 0, 0, 0, 0;
@@ -200,11 +190,13 @@ function sys = mdlUpdate(t, x, u)
     % x_est = x_pred + (K * (z - h));
     % P_est = (eye(7) - K * H) * P_pred;
     x_est = x_pred;
-    P_est = P_pred
+    P_est = P_pred;
     
     % 
     % ack state vector
     sys = [x_est; P_est(:)];
+    disp(sys)
+    disp('line')
 end
 
 
