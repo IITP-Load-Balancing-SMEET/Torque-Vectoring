@@ -16,48 +16,43 @@ function [sys, x0, str, ts] = ekf_s_function(t, x, u, flag)
 end
 
 
-function [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb] = dugoff(Vx, Vy, Fy_fl, Fy_fr, Fy_rl, Fy_rr, delta1, delta2, m, gamma, lf, lr)
+function [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb] = dugoff(Vx, Vy, delta1, delta2, m, gamma, lf, lr)
     % tire slip and cornering stiffness calculation
 
-    if Vx < 1.0 % prevent divided by zero
-        Fy_flb = 0.0;
-        Fy_frb = 0.0;
-        Fy_rlb = 0.0;
-        Fy_rrb = 0.0;
+    if abs(Vx) <= 0.25 % prevent divided by zero
+        Fy_flb = 0.01;
+        Fy_frb = 0.01;
+        Fy_rlb = 0.01;
+        Fy_rrb = 0.01;
 
     else
-        a_fl = -delta1 + atan2((Vy + lf*gamma), Vx);
-        a_fr = -delta2 + atan2((Vy + lf*gamma), Vx);
-        a_rl = atan2((Vy - lr*gamma), Vx);
-        a_rr = atan2((Vy - lr*gamma), Vx);
-
-        Cy_fl = Fy_fl / a_fl;
-        Cy_fr = Fy_fr / a_fr;
-        Cy_rl = Fy_rl / a_rl;
-        Cy_rr = Fy_rr / a_rr;
-
-
         Fz = m * 9.81; % Total vertical load
         mu = 0.9; % road firction coefficient
-    
-        lambda = [(mu * Fz) / (2 * Cy_fl * abs(tan(a_fl))), ... % lambda_fl
-                  (mu * Fz) / (2 * Cy_fr * abs(tan(a_fr))), ... % lambda_fr
-                  (mu * Fz) / (2 * Cy_rl * abs(tan(a_rl))), ... % lambda_rl
-                  (mu * Fz) / (2 * Cy_rr * abs(tan(a_rr)))];    % lambda_rr
-
-        for i = 1:length(lambda)
-            if lambda(i) >= 1
-                lambda(i) = 1.0;
-            else
-                lambda(i) = (2 - lambda(i)) * lambda(i);
-            end    
-        end
-
-        Fy_flb = -Cy_fl * tan(a_fl) * lambda(1);
-        Fy_frb = -Cy_fr * tan(a_fr) * lambda(2);
-        Fy_rlb = -Cy_rl * tan(a_rl) * lambda(3);
-        Fy_rrb = -Cy_rr * tan(a_rr) * lambda(4);
+        Cy = 3600;
         
+        a_fl = -delta1 + atan((Vy + lf*gamma) / Vx);
+        a_fr = -delta2 + atan((Vy + lf*gamma) / Vx);
+        a_rl = atan((Vy - lr*gamma) / Vx);
+        a_rr = atan((Vy - lr*gamma) / Vx);
+            
+        a = [a_fl, a_fr, a_rl, a_rr];
+
+        lambda = (mu * Fz) ./ (2 * Cy .* abs(tan(a)));
+        
+        flambda = [0, 0, 0, 0];
+
+        for i=1:length(lambda)
+            if lambda(i) < 1.0
+                flambda(i) = (2 - lambda(i)) * lambda(i);
+            else
+                flambda(i) = 1.0;
+            end
+        end
+        
+        Fy_flb = -Cy * tan(a_fl) * flambda(1);
+        Fy_frb = -Cy * tan(a_fr) * flambda(2);
+        Fy_rlb = -Cy * tan(a_rl) * flambda(3);
+        Fy_rrb = -Cy * tan(a_rr) * flambda(4);
     end
 
 end
@@ -90,17 +85,21 @@ function [x_pred, Fy_b] = stateTransitionFunction(x_est, u_c, params, dt)
     
     Fx_fl = T_fl/radius; Fx_fr = T_fr/radius; Fx_rl = T_rl/radius; Fx_rr = T_rr/radius;
 
-    [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb] = dugoff(Vx, Vy, Fy_fl, Fy_fr, Fy_rl, Fy_rr, delta1, delta2, m, gamma, lf, lr);
+    [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb] = dugoff(Vx, Vy, delta1, delta2, m, gamma, lf, lr);
     Fy_b = [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb];
 
-    x1_dot = 1/m * ((Fx_fl*cos(delta1)) + (Fx_fr*cos(delta2)) - (Fy_fl*sin(delta1)) - (Fy_fr*sin(delta2)) + Fx_rl + Fx_rr - (Cav*Vx^2)) + (Vy*gamma);
-    x2_dot = 1/m * ((Fx_fl*sin(delta1)) + (Fx_fr*sin(delta2)) + (Fy_fl*cos(delta1)) + (Fy_fr*cos(delta2)) + Fy_rl + Fy_rr) - (Vx*gamma);
-    x3_dot = 1/Iz * (lf * (Fx_fl*sin(delta1) + Fx_fr*sin(delta2) + Fy_fl*cos(delta1) + Fy_fr*cos(delta2)) +  tr * (Fx_fl*cos(delta1) - Fx_fr*cos(delta2) - Fy_rl*sin(delta1) + Fy_rr*sin(delta2)));
+    x1_dot = 1/m * ((Fx_fl*cos(delta1)) + (Fx_fr*cos(delta2)) - (Fy_fl*sin(delta1)) - (Fy_fr*sin(delta2)) + Fx_rl + Fx_rr - (Cav*Vx^2)) + ...
+        (Vy*gamma);
+    x2_dot = 1/m * ((Fx_fl*sin(delta1)) + (Fx_fr*sin(delta2)) + (Fy_fl*cos(delta1)) + (Fy_fr*cos(delta2)) + Fy_rl + Fy_rr) - ...
+        (Vx*gamma);
+    x3_dot = lf/Iz * ((Fx_fl*sin(delta1) + Fx_fr*sin(delta2) + Fy_fl*cos(delta1) + Fy_fr*cos(delta2)) + ...
+        (tr * (Fx_fl*cos(delta1) - Fx_fr*cos(delta2) - Fy_fl*sin(delta1) + Fy_fr*sin(delta2))) - ...
+        (lr * (Fy_rl + Fy_rr)));
     x4_dot = (Vx/sigma) * (-Fy_fl + Fy_flb);
     x5_dot = (Vx/sigma) * (-Fy_fr + Fy_frb);  
     x6_dot = (Vx/sigma) * (-Fy_rl + Fy_rlb);  
     x7_dot = (Vx/sigma) * (-Fy_rr + Fy_rrb); %  have to check what kind of values to insert  
- 
+
     x_pred = x_est + [x1_dot; x2_dot; x3_dot; x4_dot; x5_dot; x6_dot; x7_dot] * dt;  
 end
 
@@ -117,7 +116,7 @@ function [sys, x0, str, ts] = mdlInitializeSizes
     sys = simsizes(sizes);
 
     P0 = diag([1, 1, 0.0001, 1000, 1000, 1000, 1000]);
-    x0  = [0; 0; 0; 0; 0; 0; 0; reshape(P0, [], 1)];  % Initial state and covariance matrix
+    x0  = [0; 0; 0; 0.01; 0.01; 0.01; 0.01; reshape(P0, [], 1)];  % Initial state and covariance matrix
     str = [];
     ts  = [-1 0];  % Sample time
 end
@@ -133,7 +132,7 @@ function sys = mdlUpdate(t, x, u)
     m = (226.26 + 70);  % Mass of the vehicle + 70 kg Load
     Iz = 146.827; % moment of inertia about yaw axis
     radius = 0.262;  % Wheel radius
-    Cav = (0.5 * 1.293 * 1.4285 * 1.1);  % Aerodynamic coefficient (0.5 * air_density(=1.293 kg m−3) * air_drag * cross_sectional_area)
+    Cav = (0.5 * 1.293 * 3.237 * 1.1);  % Aerodynamic coefficient (0.5 * air_density(=1.293 kg m−3) * air_drag * cross_sectional_area)
     lf = 0.813;  % Distance from CG to front axle
     lr = 0.787;  % Distance from CG to rear axle
     tr = 1.242;  % Track width
@@ -141,9 +140,6 @@ function sys = mdlUpdate(t, x, u)
     params = [m, Iz, radius, Cav, lf, lr, tr, sigma];
     
     dt = 0.001; 
-    if ~isempty(t) && length(t) >= 2
-        dt = t(2) - t(1);  % Calculate dt from t vector
-    end
 
     % Unpack state vector
     x_est = x(1:7);
@@ -169,7 +165,7 @@ function sys = mdlUpdate(t, x, u)
          (Fy_b(3) - x_est(6))/sigma, 0, 0, 0, 0, -x_est(1)/sigma, 0;
          (Fy_b(4) - x_est(7))/sigma, 0, 0, 0, 0, 0, -x_est(1)/sigma] * dt;
     
-    P_pred = (F*P_est*F.') + Q;
+    P_pred = (F*P_est*F') + Q;
 
     % Kalman Gain
     H = [1, 0, 0, 0, 0, 0, 0;
@@ -178,7 +174,7 @@ function sys = mdlUpdate(t, x, u)
          -2*Cav*x_est(1)/m, 0, 0, -sin(delta)/m, -sin(delta)/m, 0, 0;
          0, 0, 0, cos(delta)/m, cos(delta)/m, 1/m, 1/m];
 
-    % K = P_pred * H' / (H*P_pred*H' + R);
+    K = P_pred * H' / (H*P_pred*H' + R);
 
     h = [x_pred(1);
          x_pred(2);
@@ -187,16 +183,14 @@ function sys = mdlUpdate(t, x, u)
          (1/m) * ( (u(2) + u(3))/radius * sin(delta) + (x_pred(4) + x_pred(5)) * cos(delta) + x_pred(6) + x_pred(7))];
 
     % Update step
-    % x_est = x_pred + (K * (z - h));
-    % P_est = (eye(7) - K * H) * P_pred;
-    x_est = x_pred;
-    P_est = P_pred;
-    
+    x_est = x_pred + (K * (z - h));
+    P_est = (eye(7) - K * H) * P_pred;
+
     % 
     % ack state vector
+    %x_est = x_pred;
+    %P_est = P_pred;
     sys = [x_est; P_est(:)];
-    disp(sys)
-    disp('line')
 end
 
 
