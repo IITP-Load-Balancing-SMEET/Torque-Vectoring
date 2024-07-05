@@ -1,3 +1,4 @@
+
 function [sys, x0, str, ts] = ekf_s_function(t, x, u, flag)
     switch flag
         case 0
@@ -16,7 +17,8 @@ function [sys, x0, str, ts] = ekf_s_function(t, x, u, flag)
 end
 
 function [Fy_b, a] = dugoff(Vx, Vy, delta1, delta2, m, gamma, lf, lr)
-    % tire slip and cornering stiffness calculation
+    global delta1_prev delta2_prev
+
     if abs(Vx) < 0.25 % prevent divided by zero
         Fy_flb = 0.0;
         Fy_frb = 0.0;
@@ -27,6 +29,11 @@ function [Fy_b, a] = dugoff(Vx, Vy, delta1, delta2, m, gamma, lf, lr)
         Fy_b = [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb];
 
     else
+        if isnan(delta1) || isnan(delta2)
+            delta1 = delta1_prev;
+            delta2 = delta2_prev;
+        end
+
         Fz = m * 9.806; % Total vertical load
         mu = 1.0; % road firction coefficient      
         Cy = 50000;
@@ -36,7 +43,6 @@ function [Fy_b, a] = dugoff(Vx, Vy, delta1, delta2, m, gamma, lf, lr)
         a_rl = atan((Vy - lr*gamma) / (Vx + eps));
         a_rr = atan((Vy - lr*gamma) / (Vx + eps));
         a = [a_fl, a_fr, a_rl, a_rr];
-        a(isnan(a)) = 0.0;
 
         lambda = (mu * Fz) ./ (2*Cy.*abs(tan(a)) + eps);
         
@@ -56,6 +62,9 @@ function [Fy_b, a] = dugoff(Vx, Vy, delta1, delta2, m, gamma, lf, lr)
         Fy_rrb = -Cy * tan(a_rr) * flambda(4);
         Fy_b = [Fy_flb, Fy_frb, Fy_rlb, Fy_rrb];
     end
+
+    delta1_prev = delta1;
+    delta2_prev = delta2;
 end
 
 function [x_pred, Fy_b] = stateTransitionFunction(x_est, u_c, params, dt)
@@ -108,6 +117,8 @@ end
 
 function [sys, x0, str, ts] = mdlInitializeSizes
     global Q R
+    global delta1_prev delta2_prev
+
     sizes = simsizes;
     sizes.NumContStates  = 0; % 연속 상태의 수
     sizes.NumDiscStates  = 7 * 7 + 7;  % 개별상태의 수, [x; P(:)] where P is 7x7, thus 49 elements
@@ -122,9 +133,12 @@ function [sys, x0, str, ts] = mdlInitializeSizes
     x0  = [0.0; 0.0; 0.0; 0.0; 0.0; 0.0; 0.0; reshape(P0, [], 1)];  % Initial state and covariance matrix
     str = [];
     ts  = [-1 0];  % Sample time
-
+    
     Q = diag([1, 1, 0.001, 1, 1, 1, 1]); % Process Noise Covariance Matrix
     R = diag([0.0001, 0.0001, 0.000001, 0.0001, 0.0001]); % Measurement Noise Covariance Matrix 
+
+    delta1_prev = 0.0;
+    delta2_prev = 0.0;
 end
 
 function sys = mdlDerivatives(t, x, u)
@@ -133,6 +147,7 @@ end
 
 function sys = mdlUpdate(t, x, u)
     global Q R
+    global delta1 delta2
 
     % Define system parameters
     m = (226.26 + 70);  % Mass of the vehicle + 70 kg Load
@@ -200,7 +215,6 @@ end
 function sys = mdlOutputs(t, x, u)
     % Extract state estimate and P matrix
     x_est = x(1:7);
-    P_est = reshape(x(8:end), 7, 7);
 
     % Calculate vector 'a' based on the current state
     Vx = x_est(1);
@@ -213,8 +227,7 @@ function sys = mdlOutputs(t, x, u)
     lr = 0.787;
     
     [~, a] = dugoff(Vx, Vy, delta1, delta2, m, gamma, lf, lr);
-    disp(a);
-
+    
     % Output the state estimate and the vector 'a'
     sys = [x_est; a'];
 end
