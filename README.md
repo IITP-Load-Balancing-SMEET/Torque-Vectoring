@@ -22,6 +22,7 @@ tire - Dugoff Tire Model
 
 ## Kalman Filter Model
 ## good-sjh
+## per-sjy
 $$
 X = \begin{bmatrix}
 V_x \\
