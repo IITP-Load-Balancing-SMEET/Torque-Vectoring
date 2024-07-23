@@ -14,15 +14,15 @@ change the ioniq model
 
 320hp maximum Torque 605[Nm]
 
-tire - Magic Formula Model <- just use tire?
-
+tire - Dugoff Tire Model
 
 - search the gear and inwheel motor
 
 
 
 ## Kalman Filter Model
-
+## good-sjh
+## per-sjy
 $$
 X = \begin{bmatrix}
 V_x \\
