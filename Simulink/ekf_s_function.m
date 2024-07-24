@@ -69,7 +69,7 @@ function [Fy_b, a, Fz] = dugoff(Vx, Vy, delta1, delta2, delta3, delta4, m, gamma
              -delta3 + atan((Vy - lr*gamma) / (Vx));
              -delta4 + atan((Vy - lr*gamma) / (Vx))];
         
-        Cy = (-0.005789 .* Fz.^2)  + (3.500483 .* Fz) + 30000;
+        Cy = (-0.005789 .* Fz.^2)  + (3.500753 .* Fz) + 30000;
         lambda = (mu * Fz) ./ (2.0 * Cy .* abs(tan(a)));
         flambda = ones(size(lambda));
         mask = lambda < 1.0;
@@ -233,9 +233,13 @@ function sys = mdlUpdate(t, x, u)
     K = P_pred * H' / (H*P_pred*H' + R);
 
     % Update step
+    alpha = 0.75;
     innov = z - h_prior;
+    Q = (alpha * Q) + ((1-alpha) * (K*innov*innov'*K'));
+
     x_est = x_pred + (K * innov);
     P_est = (eye(7) - K * H) * P_pred;
+    
     sys = [x_est; P_est(:)];
     t_prev = t;
 end
