@@ -1,0 +1,13 @@
+[Sinus]
+	Fyfl error: 220.26, 
+	Fyfr error: 224.17, 
+	Fyrl error: 183.58, 
+	Fyrr error: 182.46, 
+	My error: 257.28
+
+Steady
+	Fyfl error: 154.65, 
+	Fyfr error: 169.33, 
+	Fyrl error: 160.71, 
+	Fyrr error: 70.72, 
+	My error: 404.63
