@@ -183,5 +183,99 @@ plot(My_steady_est_time(My_steady_indices), My_steady_true_interp(My_steady_indi
 xlabel('Time (s)');
 ylabel('M_{y} (N.m)');
 legend('M_{y, est}', 'M_{y, ref}');
-
+ylim([-200, 200]);
 saveas(figure(6), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\My_steady.png');
+
+
+% Load data
+Fy_race_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyfl_race_est.mat').ans.time;
+Fyfl_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyfl_race_est.mat').ans.Data;
+Fyfr_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyfr_race_est.mat').ans.Data;
+Fyrl_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyrl_race_est.mat').ans.Data;
+Fyrr_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyrr_race_est.mat').ans.Data;
+
+My_race_est_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\My_race_est.mat').ans.time;
+My_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\My_race_est.mat').ans.Data;
+
+true_race_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyfl_race_true.mat').ans.time;
+Fyfl_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyfl_race_true.mat').ans.Data;
+Fyfr_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyfr_race_true.mat').ans.Data;
+Fyrl_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyrl_race_true.mat').ans.Data;
+Fyrr_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyrr_race_true.mat').ans.Data;
+
+My_race_true_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\My_race_true.mat').ans.time;
+My_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\My_race_true.mat').ans.Data;
+
+Fyfl_race_true_interp = interp1(true_race_time, Fyfl_race_true, Fy_race_time, 'linear', 'extrap');
+Fyfr_race_true_interp = interp1(true_race_time, Fyfr_race_true, Fy_race_time, 'linear', 'extrap');
+Fyrl_race_true_interp = interp1(true_race_time, Fyrl_race_true, Fy_race_time, 'linear', 'extrap');
+Fyrr_race_true_interp = interp1(true_race_time, Fyrr_race_true, Fy_race_time, 'linear', 'extrap');
+My_race_true_interp = interp1(My_race_true_time, My_race_true, My_race_est_time, 'linear', 'extrap');
+
+% Compute RMSE
+rmse_race_fl = sqrt(mean((Fyfl_race_est - Fyfl_race_true_interp).^2));
+rmse_race_fr = sqrt(mean((Fyfr_race_est - Fyfr_race_true_interp).^2));
+rmse_race_rl = sqrt(mean((Fyrl_race_est - Fyrl_race_true_interp).^2));
+rmse_race_rr = sqrt(mean((Fyrr_race_est - Fyrr_race_true_interp).^2));
+rmse_race_my = sqrt(mean((My_race_est - My_race_true_interp).^2));
+
+time_limit = 60;
+race_indices = Fy_race_time <= time_limit;
+My_race_indices = My_race_est_time <= time_limit;
+
+% Print the RMSE values
+fprintf('Fyfl error: %.2f, Fyfr error: %.2f, Fyrl error: %.2f, Fyrr error: %.2f, My error: %.2f\n', rmse_race_fl, rmse_race_fr, rmse_race_rl, rmse_race_rr, rmse_race_my);
+
+% Plotting with small margins between subplots
+figure(7);
+set(gcf, 'Position', [100, 100, 1000, 800]);
+tiledlayout(2, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
+
+nexttile;
+plot(Fy_race_time(race_indices), Fyfl_race_est(race_indices)); hold on;
+plot(Fy_race_time(race_indices), Fyfl_race_true_interp(race_indices)); hold off;
+xlabel('Time (s)');
+ylabel('Fy_{fl} (N)');
+legend('Fy_{fl, est}', 'Fy_{fl, ref}');
+
+nexttile;
+plot(Fy_race_time(race_indices), Fyfr_race_est(race_indices)); hold on;
+plot(Fy_race_time(race_indices), Fyfr_race_true_interp(race_indices)); hold off;
+xlabel('Time (s)');
+ylabel('Fy_{fr} (N)');
+legend('Fy_{fr, est}', 'Fy_{fr, ref}');
+
+saveas(figure(7), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\frontForce_race.png');
+
+figure(8);
+set(gcf, 'Position', [100, 100, 1000, 800]);
+tiledlayout(2, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
+
+nexttile;
+plot(Fy_race_time(race_indices), Fyrl_race_est(race_indices)); hold on;
+plot(Fy_race_time(race_indices), Fyrl_race_true_interp(race_indices)); hold off;
+xlabel('Time (s)');
+ylabel('Fy_{rl} (N)');
+legend('Fy_{rl, est}', 'Fy_{rl, ref}');
+
+nexttile;
+plot(Fy_race_time(race_indices), Fyrr_race_est(race_indices)); hold on;
+plot(Fy_race_time(race_indices), Fyrr_race_true_interp(race_indices)); hold off;
+xlabel('Time (s)');
+ylabel('Fy_{rr} (N)');
+legend('Fy_{rr, est}', 'Fy_{rr, ref}');
+
+saveas(figure(8), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\rearForce_race.png');
+
+figure(9);
+set(gcf, 'Position', [100, 100, 1000, 800]);
+tiledlayout(1, 1, 'Padding', 'compact', 'TileSpacing', 'compact'); 
+
+nexttile;
+plot(My_race_est_time(My_race_indices), My_race_est(My_race_indices)); hold on;
+plot(My_race_est_time(My_race_indices), My_race_true_interp(My_race_indices)); hold off;
+xlabel('Time (s)');
+ylabel('M_{y} (N.m)');
+legend('M_{y, est}', 'M_{y, ref}');
+
+saveas(figure(9), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\My_race.png');
