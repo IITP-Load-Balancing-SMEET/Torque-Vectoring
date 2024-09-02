@@ -30,7 +30,7 @@ rmse_sinus_rl = sqrt(mean((Fyrl_sinus_est - Fyrl_sinus_true_interp).^2));
 rmse_sinus_rr = sqrt(mean((Fyrr_sinus_est - Fyrr_sinus_true_interp).^2));
 rmse_sinus_my = sqrt(mean((My_sinus_est - My_sinus_true_interp).^2));
 
-fontSize = 14;
+fontSize = 18;
 legendFontSize = 12;
 time_limit = 60;
 sinus_indices = Fy_sinus_time <= time_limit;
