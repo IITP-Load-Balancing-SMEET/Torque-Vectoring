@@ -1,8 +1,8 @@
 [Sinus]
-Fyfl error: 79.94, Fyfr error: 86.39, Fyrl error: 59.00, Fyrr error: 51.35, My error: 54.33
+Fyfl error: 94.73, Fyfr error: 106.11, Fyrl error: 74.44, Fyrr error: 65.71, My error: 78.24
 
 [Steady]
-Fyfl error: 44.03, Fyfr error: 48.46, Fyrl error: 46.94, Fyrr error: 35.44, My error: 16.52
+Fyfl error: 44.35, Fyfr error: 49.44, Fyrl error: 46.70, Fyrr error: 34.96, My error: 24.26
 
 [Race]
-Fyfl error: 168.90, Fyfr error: 151.52, Fyrl error: 136.19, Fyrr error: 122.89, My error: 144.17
+Fyfl error: 219.40, Fyfr error: 227.52, Fyrl error: 126.60, Fyrr error: 123.41, My error: 141.15

@@ -27,9 +27,10 @@ function [sys, x0, str, ts] = mdlInitializeSizes()
     
     % Initial conditions
     initialWeight = 1;        % Initial weight value
-    initialPrevValue = 0;     % Initial previous value
+    initialPrevValue = 0;
+    switch_value = 0; % Initial previous value
     
-    x0 = [initialWeight; initialPrevValue,switch_value]; % Initial states
+    x0 = [initialWeight; initialPrevValue; switch_value]; % Initial states
     str = []; % No state ordering
     ts = [0 0]; % Sample time: [period, offset]
 end
@@ -67,7 +68,7 @@ function sys = mdlUpdate(~, x, u)
     end
     
     % Update the states
-    sys = [weight; current_value]; % Updated weight and store current value as the previous value for next step
+    sys = [weight; current_value; u(2)]; % Updated weight and store current value as the previous value for next step
 end
 
 function sys = mdlOutputs(~, x, ~)

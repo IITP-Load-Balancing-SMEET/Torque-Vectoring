@@ -30,6 +30,8 @@ rmse_sinus_rl = sqrt(mean((Fyrl_sinus_est - Fyrl_sinus_true_interp).^2));
 rmse_sinus_rr = sqrt(mean((Fyrr_sinus_est - Fyrr_sinus_true_interp).^2));
 rmse_sinus_my = sqrt(mean((My_sinus_est - My_sinus_true_interp).^2));
 
+fontSize = 14;
+legendFontSize = 12;
 time_limit = 60;
 sinus_indices = Fy_sinus_time <= time_limit;
 My_sinus_indices = My_sinus_est_time <= time_limit;
@@ -45,16 +47,16 @@ tiledlayout(2, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
 nexttile;
 plot(Fy_sinus_time(sinus_indices), Fyfl_sinus_true_interp(sinus_indices)); hold on;
 plot(Fy_sinus_time(sinus_indices), Fyfl_sinus_est(sinus_indices)); hold off;
-xlabel('Time (s)');
-ylabel('Fy_{fl} (N)');
-legend('Fy_{fl, ref}', 'Fy_{fl, est}');
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('Fy_{fl} (N)', 'FontSize', fontSize);
+legend('Fy_{fl, Ref}', 'Fy_{fl, Est}', 'FontSize', legendFontSize);
 
 nexttile;
 plot(Fy_sinus_time(sinus_indices), Fyfr_sinus_true_interp(sinus_indices)); hold on;
 plot(Fy_sinus_time(sinus_indices), Fyfr_sinus_est(sinus_indices)); hold off;
-xlabel('Time (s)');
-ylabel('Fy_{fr} (N)');
-legend('Fy_{fr, ref}', 'Fy_{fr, est}');
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('Fy_{fr} (N)', 'FontSize', fontSize);
+legend('Fy_{fr, Ref}', 'Fy_{fr, Est}', 'FontSize', legendFontSize);
 
 saveas(figure(1), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\frontForce_sinus.png');
 
@@ -65,29 +67,29 @@ tiledlayout(2, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
 nexttile;
 plot(Fy_sinus_time(sinus_indices), Fyrl_sinus_true_interp(sinus_indices)); hold on;
 plot(Fy_sinus_time(sinus_indices), Fyrl_sinus_est(sinus_indices)); hold off;
-xlabel('Time (s)');
-ylabel('Fy_{rl} (N)');
-legend('Fy_{rl, ref}', 'Fy_{rl, est}');
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('Fy_{rl} (N)', 'FontSize', fontSize);
+legend('Fy_{rl, Ref}', 'Fy_{rl, Est}', 'FontSize', legendFontSize);
 
 nexttile;
 plot(Fy_sinus_time(sinus_indices), Fyrr_sinus_true_interp(sinus_indices)); hold on;
 plot(Fy_sinus_time(sinus_indices), Fyrr_sinus_est(sinus_indices)); hold off;
-xlabel('Time (s)');
-ylabel('Fy_{rr} (N)');
-legend( 'Fy_{rr, ref}', 'Fy_{rr, est}');
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('Fy_{rr} (N)', 'FontSize', fontSize);
+legend( 'Fy_{rr, Ref}', 'Fy_{rr, Est}', 'FontSize', legendFontSize);
 
 saveas(figure(2), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\rearForce_sinus.png');
 
 figure(3);
-set(gcf, 'Position', [100, 100, 1000, 800]);
+set(gcf, 'Position', [100, 100, 1000, 400]);
 tiledlayout(1, 1, 'Padding', 'compact', 'TileSpacing', 'compact'); 
 
 nexttile;
 plot(My_sinus_est_time(My_sinus_indices), My_sinus_true_interp(My_sinus_indices)); hold on;
 plot(My_sinus_est_time(My_sinus_indices), My_sinus_est(My_sinus_indices)); hold off;
-xlabel('Time (s)');
-ylabel('M_{y} (N.m)');
-legend('M_{y, ref}', 'M_{y, est}');
+xlabel('Time (s)','FontSize', fontSize);
+ylabel('M_{y} (N.m)', 'FontSize', fontSize);
+legend('M_{y, Ref}', 'M_{y, Est}', 'FontSize', legendFontSize);
 
 saveas(figure(3), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\My_sinus.png');
 
@@ -140,16 +142,16 @@ tiledlayout(2, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
 nexttile;
 plot(Fy_steady_time(steady_indices), Fyfl_steady_true_interp(steady_indices)); hold on;
 plot(Fy_steady_time(steady_indices), Fyfl_steady_est(steady_indices)); hold off;
-xlabel('Time (s)');
-ylabel('Fy_{fl} (N)');
-legend('Fy_{fl, est}', 'Fy_{fl, ref}');
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('Fy_{fl} (N)', 'FontSize', fontSize);
+legend('Fy_{fl, Est}', 'Fy_{fl, Ref}', 'FontSize', legendFontSize);
 
 nexttile;
 plot(Fy_steady_time(steady_indices), Fyfr_steady_true_interp(steady_indices)); hold on;
 plot(Fy_steady_time(steady_indices), Fyfr_steady_est(steady_indices)); hold off;
-xlabel('Time (s)');
-ylabel('Fy_{fr} (N)');
-legend('Fy_{fr, ref}', 'Fy_{fr, est}');
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('Fy_{fr} (N)', 'FontSize', fontSize);
+legend('Fy_{fr, Ref}', 'Fy_{fr, Est}', 'FontSize', legendFontSize);
 
 saveas(figure(4), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\frontForce_steady.png');
 
@@ -160,30 +162,30 @@ tiledlayout(2, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
 nexttile;
 plot(Fy_steady_time(steady_indices), Fyrl_steady_true_interp(steady_indices)); hold on;
 plot(Fy_steady_time(steady_indices), Fyrl_steady_est(steady_indices)); hold off;
-xlabel('Time (s)');
-ylabel('Fy_{rl} (N)');
-legend('Fy_{rl, ref}', 'Fy_{rl, est}');
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('Fy_{rl} (N)', 'FontSize', fontSize);
+legend('Fy_{rl, Ref}', 'Fy_{rl, Est}', 'FontSize', legendFontSize);
 
 nexttile;
 plot(Fy_steady_time(steady_indices), Fyrr_steady_true_interp(steady_indices)); hold on;
 plot(Fy_steady_time(steady_indices), Fyrr_steady_est(steady_indices)); hold off;
-xlabel('Time (s)');
-ylabel('Fy_{rr} (N)');
-legend('Fy_{rr, ref}', 'Fy_{rr, est}');
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('Fy_{rr} (N)', 'FontSize', fontSize);
+legend('Fy_{rr, Ref}', 'Fy_{rr, Est}', 'FontSize', legendFontSize);
 
 saveas(figure(5), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\rearForce_steady.png');
 
 figure(6);
-set(gcf, 'Position', [100, 100, 1000, 800]);
+set(gcf, 'Position', [100, 100, 1000, 400]);
 tiledlayout(1, 1, 'Padding', 'compact', 'TileSpacing', 'compact'); 
 
 nexttile;
 plot(My_steady_est_time(My_steady_indices), My_steady_true_interp(My_steady_indices)); hold on;
 plot(My_steady_est_time(My_steady_indices), My_steady_est(My_steady_indices)); hold off;
-xlabel('Time (s)');
-ylabel('M_{y} (N.m)');
-legend('M_{y, ref}', 'M_{y, est}');
-ylim([-200, 200]);
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('M_{y} (N.m)', 'FontSize', fontSize);
+legend('M_{y, Ref}', 'M_{y, Est}', 'FontSize', legendFontSize);
+ylim([-500, 500]);
 saveas(figure(6), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\My_steady.png');
 
 
@@ -234,16 +236,16 @@ tiledlayout(2, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
 nexttile;
 plot(Fy_race_time(race_indices), Fyfl_race_true_interp(race_indices)); hold on;
 plot(Fy_race_time(race_indices), Fyfl_race_est(race_indices)); hold off;
-xlabel('Time (s)');
-ylabel('Fy_{fl} (N)');
-legend('Fy_{fl, ref}', 'Fy_{fl, est}');
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('Fy_{fl} (N)', 'FontSize', fontSize);
+legend('Fy_{fl, Ref}', 'Fy_{fl, Est}', 'FontSize', legendFontSize);
 
 nexttile;
 plot(Fy_race_time(race_indices), Fyfr_race_true_interp(race_indices)); hold on;
 plot(Fy_race_time(race_indices), Fyfr_race_est(race_indices)); hold off;
-xlabel('Time (s)');
-ylabel('Fy_{fr} (N)');
-legend('Fy_{fr, ref}', 'Fy_{fr, est}');
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('Fy_{fr} (N)', 'FontSize', fontSize);
+legend('Fy_{fr, Ref}', 'Fy_{fr, Est}', 'FontSize', legendFontSize);
 
 saveas(figure(7), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\frontForce_race.png');
 
@@ -254,28 +256,28 @@ tiledlayout(2, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
 nexttile;
 plot(Fy_race_time(race_indices), Fyrl_race_true_interp(race_indices)); hold on;
 plot(Fy_race_time(race_indices), Fyrl_race_est(race_indices)); hold off;
-xlabel('Time (s)');
-ylabel('Fy_{rl} (N)');
-legend('Fy_{rl, ref}', 'Fy_{rl, est}');
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('Fy_{rl} (N)', 'FontSize', fontSize);
+legend('Fy_{rl, Ref}', 'Fy_{rl, Est}', 'FontSize', legendFontSize);
 
 nexttile;
 plot(Fy_race_time(race_indices), Fyrr_race_true_interp(race_indices)); hold on;
 plot(Fy_race_time(race_indices), Fyrr_race_est(race_indices)); hold off;
-xlabel('Time (s)');
-ylabel('Fy_{rr} (N)');
-legend('Fy_{rr, ref}', 'Fy_{rr, est}');
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('Fy_{rr} (N)', 'FontSize', fontSize);
+legend('Fy_{rr, Ref}', 'Fy_{rr, Est}', 'FontSize', legendFontSize);
 
 saveas(figure(8), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\rearForce_race.png');
 
 figure(9);
-set(gcf, 'Position', [100, 100, 1000, 800]);
+set(gcf, 'Position', [100, 100, 1000, 400]);
 tiledlayout(1, 1, 'Padding', 'compact', 'TileSpacing', 'compact'); 
 
 nexttile;
 plot(My_race_est_time(My_race_indices), My_race_true_interp(My_race_indices)); hold on;
 plot(My_race_est_time(My_race_indices), My_race_est(My_race_indices)); hold off;
-xlabel('Time (s)');
-ylabel('M_{y} (N.m)');
-legend('M_{y, ref}', 'M_{y, est}');
+xlabel('Time (s)', 'FontSize', fontSize);
+ylabel('M_{y} (N.m)', 'FontSize', fontSize);
+legend('M_{y, Ref}', 'M_{y, Est}', 'FontSize', legendFontSize);
 
 saveas(figure(9), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\My_race.png');
