@@ -1,21 +1,21 @@
 % Load data
-Fy_sinus_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\Fyfl_sinus_est.mat').ans.time;
-Fyfl_sinus_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\Fyfl_sinus_est.mat').ans.Data;
-Fyfr_sinus_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\Fyfr_sinus_est.mat').ans.Data;
-Fyrl_sinus_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\Fyrl_sinus_est.mat').ans.Data;
-Fyrr_sinus_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\Fyrr_sinus_est.mat').ans.Data;
+Fy_sinus_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\Fyfl_sinus_est.mat').ans.time;
+Fyfl_sinus_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\Fyfl_sinus_est.mat').ans.Data;
+Fyfr_sinus_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\Fyfr_sinus_est.mat').ans.Data;
+Fyrl_sinus_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\Fyrl_sinus_est.mat').ans.Data;
+Fyrr_sinus_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\Fyrr_sinus_est.mat').ans.Data;
 
-My_sinus_est_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\My_sinus_est.mat').ans.time;
-My_sinus_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\My_sinus_est.mat').ans.Data;
+My_sinus_est_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\My_sinus_est.mat').ans.time;
+My_sinus_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\My_sinus_est.mat').ans.Data;
 
-true_sinus_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\Fyfl_sinus_true.mat').ans.time;
-Fyfl_sinus_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\Fyfl_sinus_true.mat').ans.Data;
-Fyfr_sinus_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\Fyfr_sinus_true.mat').ans.Data;
-Fyrl_sinus_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\Fyrl_sinus_true.mat').ans.Data;
-Fyrr_sinus_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\Fyrr_sinus_true.mat').ans.Data;
+true_sinus_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\Fyfl_sinus_true.mat').ans.time;
+Fyfl_sinus_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\Fyfl_sinus_true.mat').ans.Data;
+Fyfr_sinus_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\Fyfr_sinus_true.mat').ans.Data;
+Fyrl_sinus_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\Fyrl_sinus_true.mat').ans.Data;
+Fyrr_sinus_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\Fyrr_sinus_true.mat').ans.Data;
 
-My_sinus_true_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\My_sinus_true.mat').ans.time;
-My_sinus_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\sinus\My_sinus_true.mat').ans.Data;
+My_sinus_true_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\My_sinus_true.mat').ans.time;
+My_sinus_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\sinus\My_sinus_true.mat').ans.Data;
 
 Fyfl_sinus_true_interp = interp1(true_sinus_time, Fyfl_sinus_true, Fy_sinus_time, 'linear', 'extrap');
 Fyfr_sinus_true_interp = interp1(true_sinus_time, Fyfr_sinus_true, Fy_sinus_time, 'linear', 'extrap');
@@ -95,23 +95,23 @@ saveas(figure(3), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\M
 
 
 % Load data
-Fy_steady_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\Fyfl_steady_est.mat').ans.time;
-Fyfl_steady_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\Fyfl_steady_est.mat').ans.Data;
-Fyfr_steady_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\Fyfr_steady_est.mat').ans.Data;
-Fyrl_steady_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\Fyrl_steady_est.mat').ans.Data;
-Fyrr_steady_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\Fyrr_steady_est.mat').ans.Data;
+Fy_steady_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\Fyfl_steady_est.mat').ans.time;
+Fyfl_steady_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\Fyfl_steady_est.mat').ans.Data;
+Fyfr_steady_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\Fyfr_steady_est.mat').ans.Data;
+Fyrl_steady_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\Fyrl_steady_est.mat').ans.Data;
+Fyrr_steady_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\Fyrr_steady_est.mat').ans.Data;
 
-My_steady_est_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\My_steady_est.mat').ans.time;
-My_steady_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\My_steady_est.mat').ans.Data;
+My_steady_est_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\My_steady_est.mat').ans.time;
+My_steady_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\My_steady_est.mat').ans.Data;
 
-true_steady_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\Fyfl_steady_true.mat').ans.time;
-Fyfl_steady_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\Fyfl_steady_true.mat').ans.Data;
-Fyfr_steady_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\Fyfr_steady_true.mat').ans.Data;
-Fyrl_steady_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\Fyrl_steady_true.mat').ans.Data;
-Fyrr_steady_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\Fyrr_steady_true.mat').ans.Data;
+true_steady_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\Fyfl_steady_true.mat').ans.time;
+Fyfl_steady_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\Fyfl_steady_true.mat').ans.Data;
+Fyfr_steady_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\Fyfr_steady_true.mat').ans.Data;
+Fyrl_steady_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\Fyrl_steady_true.mat').ans.Data;
+Fyrr_steady_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\Fyrr_steady_true.mat').ans.Data;
 
-My_steady_true_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\My_steady_true.mat').ans.time;
-My_steady_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\steady\My_steady_true.mat').ans.Data;
+My_steady_true_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\My_steady_true.mat').ans.time;
+My_steady_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\steady\My_steady_true.mat').ans.Data;
 
 % Interpolate the true values to match the time points of the estimated values
 Fyfl_steady_true_interp = interp1(true_steady_time, Fyfl_steady_true, Fy_steady_time, 'linear', 'extrap');
@@ -185,28 +185,28 @@ plot(My_steady_est_time(My_steady_indices), My_steady_est(My_steady_indices)); h
 xlabel('Time (s)', 'FontSize', fontSize);
 ylabel('M_{y} (N.m)', 'FontSize', fontSize);
 legend('M_{y, Ref}', 'M_{y, Est}', 'FontSize', legendFontSize);
-ylim([-500, 500]);
+ylim([-400, 400]);
 saveas(figure(6), 'C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Paper\Figures\My_steady.png');
 
 
 % Load data
-Fy_race_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyfl_race_est.mat').ans.time;
-Fyfl_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyfl_race_est.mat').ans.Data;
-Fyfr_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyfr_race_est.mat').ans.Data;
-Fyrl_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyrl_race_est.mat').ans.Data;
-Fyrr_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyrr_race_est.mat').ans.Data;
+Fy_race_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\Fyfl_race_est.mat').ans.time;
+Fyfl_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\Fyfl_race_est.mat').ans.Data;
+Fyfr_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\Fyfr_race_est.mat').ans.Data;
+Fyrl_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\Fyrl_race_est.mat').ans.Data;
+Fyrr_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\Fyrr_race_est.mat').ans.Data;
 
-My_race_est_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\My_race_est.mat').ans.time;
-My_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\My_race_est.mat').ans.Data;
+My_race_est_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\My_race_est.mat').ans.time;
+My_race_est = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\My_race_est.mat').ans.Data;
 
-true_race_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyfl_race_true.mat').ans.time;
-Fyfl_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyfl_race_true.mat').ans.Data;
-Fyfr_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyfr_race_true.mat').ans.Data;
-Fyrl_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyrl_race_true.mat').ans.Data;
-Fyrr_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\Fyrr_race_true.mat').ans.Data;
+true_race_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\Fyfl_race_true.mat').ans.time;
+Fyfl_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\Fyfl_race_true.mat').ans.Data;
+Fyfr_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\Fyfr_race_true.mat').ans.Data;
+Fyrl_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\Fyrl_race_true.mat').ans.Data;
+Fyrr_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\Fyrr_race_true.mat').ans.Data;
 
-My_race_true_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\My_race_true.mat').ans.time;
-My_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\race\My_race_true.mat').ans.Data;
+My_race_true_time = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\My_race_true.mat').ans.time;
+My_race_true = load('C:\Users\SMEET_SIMUL\Desktop\Torque-Vectoring\Simulink\results\AEKF\race\My_race_true.mat').ans.Data;
 
 Fyfl_race_true_interp = interp1(true_race_time, Fyfl_race_true, Fy_race_time, 'linear', 'extrap');
 Fyfr_race_true_interp = interp1(true_race_time, Fyfr_race_true, Fy_race_time, 'linear', 'extrap');

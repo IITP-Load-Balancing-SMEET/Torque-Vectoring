@@ -2,7 +2,7 @@
 Fyfl error: 94.73, Fyfr error: 106.11, Fyrl error: 74.44, Fyrr error: 65.71, My error: 78.24
 
 [Steady]
-Fyfl error: 44.35, Fyfr error: 49.44, Fyrl error: 46.70, Fyrr error: 34.96, My error: 24.26
+Fyfl error: 78.22, Fyfr error: 66.75, Fyrl error: 47.22, Fyrr error: 67.93, My error: 30.63
 
 [Race]
 Fyfl error: 219.40, Fyfr error: 227.52, Fyrl error: 126.60, Fyrr error: 123.41, My error: 141.15
