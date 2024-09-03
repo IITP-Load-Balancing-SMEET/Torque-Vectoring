@@ -144,7 +144,7 @@ plot(Fy_steady_time(steady_indices), Fyfl_steady_true_interp(steady_indices)); h
 plot(Fy_steady_time(steady_indices), Fyfl_steady_est(steady_indices)); hold off;
 xlabel('Time (s)', 'FontSize', fontSize);
 ylabel('Fy_{fl} (N)', 'FontSize', fontSize);
-legend('Fy_{fl, Est}', 'Fy_{fl, Ref}', 'FontSize', legendFontSize);
+legend('Fy_{fl, Ref}', 'Fy_{fl, Est}', 'FontSize', legendFontSize);
 
 nexttile;
 plot(Fy_steady_time(steady_indices), Fyfr_steady_true_interp(steady_indices)); hold on;
