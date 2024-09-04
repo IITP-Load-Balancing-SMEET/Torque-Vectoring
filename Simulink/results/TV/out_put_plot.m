@@ -48,8 +48,9 @@ plot(time,r_TV)
 fontSize = 18;
 legendFontSize = 12;
 xlabel('Time (s)', 'FontSize', fontSize);
-ylabel('raw rate (rad/s)', 'FontSize', fontSize);
+ylabel('yaw rate (rad/s)', 'FontSize', fontSize);
 legend('yaw rate_{desired}', 'yaw rate_{torque vectoring}', 'FontSize', legendFontSize);
+saveas(figure(1), 'C:\Users\jm538\Desktop\Code\TV_IITP\Paper\Figures\yaw_rate_sinus_TV.tiff');
 figure
 plot(time,r_des);
 hold on
@@ -57,8 +58,9 @@ plot(time_No,r_No)
 fontSize = 18;
 legendFontSize = 12;
 xlabel('Time (s)', 'FontSize', fontSize);
-ylabel('raw rate (rad/s)', 'FontSize', fontSize);
+ylabel('yaw rate (rad/s)', 'FontSize', fontSize);
 legend('yaw rate_{desired}','yaw rate_{base}', 'FontSize', legendFontSize);
+saveas(figure(2), 'C:\Users\jm538\Desktop\Code\TV_IITP\Paper\Figures\yaw_rate_sinus_No.tiff');
 
 
 
@@ -84,10 +86,10 @@ plot(time,r_TV)
 fontSize = 18;
 legendFontSize = 12;
 xlabel('Time (s)', 'FontSize', fontSize);
-ylabel('raw rate (rad/s)', 'FontSize', fontSize);
+ylabel('yaw rate (rad/s)', 'FontSize', fontSize);
 legend('yaw rate_{desired}', 'yaw rate_{torque vectoring}', 'FontSize', legendFontSize);
-
-
+saveas(figure(1), 'C:\Users\jm538\Desktop\Code\TV_IITP\Paper\Figures\yaw_rate_steady_TV.tiff');
+figure
 plot(time_No,r_des_No)
 hold on
 plot(time_No,r_No)
@@ -95,9 +97,9 @@ plot(time_No,r_No)
 fontSize = 18;
 legendFontSize = 12;
 xlabel('Time (s)', 'FontSize', fontSize);
-ylabel('raw rate (rad/s)', 'FontSize', fontSize);
+ylabel('yaw rate (rad/s)', 'FontSize', fontSize);
 legend('yaw rate_{desired}', 'yaw rate_{base}', 'FontSize', legendFontSize);
-
+saveas(figure(1), 'C:\Users\jm538\Desktop\Code\TV_IITP\Paper\Figures\yaw_rate_steady_No.tiff');
 
 
 %% race track
