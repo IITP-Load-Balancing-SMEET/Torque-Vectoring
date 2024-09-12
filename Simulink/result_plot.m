@@ -32,7 +32,7 @@ rmse_sinus_my = sqrt(mean((My_sinus_est - My_sinus_true_interp).^2));
 
 fontSize = 18;
 legendFontSize = 12;
-time_limit = 60;
+time_limit = 30;
 sinus_indices = Fy_sinus_time <= time_limit;
 My_sinus_indices = My_sinus_est_time <= time_limit;
 
@@ -130,7 +130,6 @@ rmse_steady_my = sqrt(mean((My_steady_est - My_steady_true_interp).^2));
 % Print the RMSE values
 fprintf('Fyfl error: %.2f, Fyfr error: %.2f, Fyrl error: %.2f, Fyrr error: %.2f, My error: %.2f\n', rmse_steady_fl, rmse_steady_fr, rmse_steady_rl, rmse_steady_rr, rmse_steady_my);
 
-time_limit = 60;
 steady_indices = Fy_steady_time <= time_limit;
 My_steady_indices = My_steady_est_time <= time_limit;
 
