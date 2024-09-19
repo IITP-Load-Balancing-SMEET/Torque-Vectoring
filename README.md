@@ -1,23 +1,6 @@
 # Torque Vectoring (IJAT)
 
-<div align='center'>
- 
-![image](https://github.com/IITP-Load-Balancing-SMEET/Torque-Vectoring/assets/86957779/dc042e82-fc9f-4b85-af4a-72224ab99e6f)
-
-</div>
-
-
-## Todo
-
-change the ioniq model
-- 4-wheel model 
-
-320hp maximum Torque 605[Nm]
-
-tire - Dugoff Tire Model
-
-- search the gear and inwheel motor
-
+![alt text](setup.png)
 
 
 ## Kalman Filter Model
