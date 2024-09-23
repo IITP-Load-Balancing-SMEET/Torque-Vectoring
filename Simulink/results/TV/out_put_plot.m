@@ -84,7 +84,7 @@ legendFontSize = 12;
 
 xlabel('Time (s)', 'FontSize', fontSize);
 ylabel('yaw rate (rad/s)', 'FontSize', fontSize);
-legend('yaw rate_{desired}', 'yaw rate_{with TV}', 'yaw rate_{with TV}', 'FontSize', legendFontSize);
+legend('yaw rate_{desired}', 'yaw rate_{with TV}', 'yaw rate_{without TV}', 'FontSize', legendFontSize);
 set(gcf, 'Position', [100, 100, 1000, 400]);
 xlim([0,30])
 
