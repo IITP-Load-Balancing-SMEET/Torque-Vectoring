@@ -66,3 +66,8 @@ x_3 \ (=\gamma) \\
 $$
 
 ---
+
+### Optimization data
+You can access the data for cornering stiffness optimization at the following link
+
+https://drive.google.com/drive/folders/1Z1bGMPGGy64C2DSpo4TEib-w9FsFJz2Y?usp=sharing
